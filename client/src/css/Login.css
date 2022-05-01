@@ -1,0 +1,42 @@
+.login {
+  /* height: 50vh; */
+  display: inline-block;
+  width: 40%;
+  height: 100%;
+  margin: 8% auto;
+  /* border: 1px solid saddlebrown; */
+  padding: 20px;
+  background-color: var(--main-light);
+  /* background-image: url("https://img.wallpapersafari.com/tablet/768/1024/76/91/koxerM.jpg"); */
+  animation: movingUp 2s;
+}
+
+.L-form {
+  height: 30vh;
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.L-form input {
+  margin: 3% 0;
+  padding: 12px;
+  /* background-color: rgb(238, 238, 238); */
+  border: none;
+}
+
+.L-form button {
+  padding: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .login {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .login {
+    width: 70%;
+  }
+}

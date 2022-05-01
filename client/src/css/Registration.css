@@ -1,0 +1,39 @@
+.R-signUp-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 4% auto;
+  height: 70vh;
+  /* border: 1px solid red; */
+  width: 40%;
+  padding: 20px;
+  /* background-image: url("https://img.wallpapersafari.com/tablet/768/1024/76/91/koxerM.jpg"); */
+  background-color: var(--main-light);
+  animation: movingUp 2s;
+}
+.R-signUp-form input {
+  padding: 12px;
+  /* background-color: rgb(238, 238, 238); */
+  border: none;
+}
+
+.R-location {
+  display: flex;
+  flex-direction: column;
+}
+.R-signupbtn {
+  padding: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .R-signUp-form {
+    height: 70vh;
+    width: 60%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .R-signUp-form {
+    width: 80%;
+  }
+}

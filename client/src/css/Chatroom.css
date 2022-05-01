@@ -1,0 +1,104 @@
+.Chatroom {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--main-lighter);
+}
+.Chat {
+  width: 70%;
+}
+
+.Chat h3 {
+  margin: 2% 0;
+  padding: 0 7%;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+.Chat-messages {
+  margin: auto;
+  width: 95%;
+  height: 70vh;
+  overflow-y: scroll;
+  /* border: 2px solid var(--main-stress); */
+  background-color: white;
+}
+.Chat-messages::-webkit-scrollbar {
+  width: 7px; /*스크롤바의 너비*/
+}
+
+.Chat-messages::-webkit-scrollbar-thumb {
+  background-color: var(--main-stress); /*스크롤바의 색상*/
+  border-radius: 10px;
+}
+
+.Chat-messages::-webkit-scrollbar-track {
+  background-color: transparent; /*스크롤바 트랙 색상*/
+}
+
+.Chat-message-byDate {
+  background-color: var(--gray-light);
+}
+.Chat-message-me,
+.Chat-message-otherside {
+  position: relative;
+  width: 50%;
+  font-size: 15px;
+  text-align: left;
+  padding: 2% 3% 1%;
+  margin: 3%;
+  border-radius: 10px;
+}
+.Chat-message-me {
+  /* div 안의 div가 맨 오른쪽에 정렬되도록 */
+  box-shadow: 2px 2px 2px gray;
+  margin-left: auto;
+  background-color: var(--main-lighter);
+}
+.Chat-message-otherside {
+  /* border: 1px solid saddlebrown; */
+  box-shadow: 2px 2px 2px gray;
+  background-color: var(--main-light);
+}
+
+.Chat-message-delete {
+  visibility: hidden;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: var(--main-stress);
+  background-color: transparent;
+}
+.Chat-message-me:hover .Chat-message-delete,
+.Chat-message-otherside:hover .Chat-message-delete {
+  visibility: visible;
+}
+
+.Chat input {
+  padding: 10px;
+  width: 70%;
+  margin: 1% 1%;
+  outline: none;
+  border: none;
+  border: 2px solid var(--main-light);
+}
+
+@media screen and (max-width: 768px) {
+  .Chatroom .Message {
+    display: none;
+  }
+  .Chat {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .Chat h3 {
+    font-size: 17px;
+  }
+  .Chat-message-me,
+  .Chat-message-otherside {
+    font-size: 12px;
+  }
+  .Chat-message-byDate {
+    font-size: 10px;
+  }
+}
