@@ -141,7 +141,7 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       axios
-        .get("http://localhost:3001/auth/auth", {
+        .get("https://anbda.herokuapp.com/auth/auth", {
           headers: { accessToken: localStorage.getItem("accessToken") },
         })
         .then((res) => {

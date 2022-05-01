@@ -25,7 +25,7 @@ function CreatePost() {
 
   const handleSearch = () => {
     axios
-      .get("http://localhost:3001/search/book?query=" + search)
+      .get("https://anbda.herokuapp.com/search/book?query=" + search)
       .then((res) => {
         setLoading(false);
 
@@ -36,7 +36,7 @@ function CreatePost() {
   const onSubmit = (data) => {
     axios
       .post(
-        "http://localhost:3001/posts",
+        "https://anbda.herokuapp.com/posts",
         {
           title: title,
           description: description,

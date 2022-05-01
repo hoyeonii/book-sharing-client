@@ -19,7 +19,7 @@ function Home() {
 
   let navigate = useNavigate();
   useEffect(() => {
-    axios.get("http://localhost:3001/posts").then((res) => {
+    axios.get("https://anbda.herokuapp.com/posts").then((res) => {
       setListOfPosts(res.data);
       setFilteredList(res.data);
     });

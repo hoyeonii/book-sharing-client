@@ -19,12 +19,14 @@ function Chatroom() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/message/${authState.id}`).then((res) => {
-      setMessage(res.data);
-      scrollDown();
-      // console.log(res.data);
-    });
-    axios.get(`http://localhost:3001/auth/login`).then((res) => {
+    axios
+      .get(`https://anbda.herokuapp.com/message/${authState.id}`)
+      .then((res) => {
+        setMessage(res.data);
+        scrollDown();
+        // console.log(res.data);
+      });
+    axios.get(`https://anbda.herokuapp.com/auth/login`).then((res) => {
       setUserList(res.data);
       // console.log(res.data.sort((a, b) => b.id - a.id));
     });
@@ -33,7 +35,7 @@ function Chatroom() {
   const handleSubmit = () => {
     axios
       .post(
-        "http://localhost:3001/message",
+        "https://anbda.herokuapp.com/message",
         {
           send: authState.id,
           receive: id,
@@ -74,7 +76,7 @@ function Chatroom() {
 
   const handleMessageDelete = (messageId) => {
     axios
-      .delete(`http://localhost:3001/message/${messageId}`, {
+      .delete(`https://anbda.herokuapp.com/message/${messageId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {

@@ -25,9 +25,11 @@ function Post() {
   const carousel = useRef();
   useEffect(() => {
     let isMounted = true;
-    axios.get(`http://localhost:3001/posts/byId/${bookId}`).then((response) => {
-      if (isMounted) setBookInfo(response.data);
-    });
+    axios
+      .get(`https://anbda.herokuapp.com/posts/byId/${bookId}`)
+      .then((response) => {
+        if (isMounted) setBookInfo(response.data);
+      });
 
     return () => {
       isMounted = false;
@@ -35,12 +37,12 @@ function Post() {
   }, [bookId]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/posts/byuserId/${bookInfo.UserId}`)
+      .get(`https://anbda.herokuapp.com/posts/byuserId/${bookInfo.UserId}`)
       .then((res) => {
         setUserPosts(res.data);
       });
     axios
-      .get(`http://localhost:3001/auth/basicinfo/${bookInfo.UserId}`)
+      .get(`https://anbda.herokuapp.com/auth/basicinfo/${bookInfo.UserId}`)
       .then((res) => {
         setUserName(res.data.name);
       });
@@ -49,7 +51,7 @@ function Post() {
   const addComment = () => {
     axios
       .post(
-        "http://localhost:3001/comments",
+        "https://anbda.herokuapp.com/comments",
         {
           commentBody: newComment,
           PostId: id,
@@ -82,7 +84,7 @@ function Post() {
 
   const deleteComment = (id) => {
     axios
-      .delete(`http://localhost:3001/comments/${id}`, {
+      .delete(`https://anbda.herokuapp.com/comments/${id}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {
@@ -100,7 +102,7 @@ function Post() {
 
   const deletePost = () => {
     axios
-      .delete(`http://localhost:3001/posts/${id}`, {
+      .delete(`https://anbda.herokuapp.com/posts/${id}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {
