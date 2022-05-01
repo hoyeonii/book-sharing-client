@@ -25,7 +25,7 @@ function CreatePost() {
 
   const handleSearch = () => {
     axios
-      .get("http://localhost:3002/search/book?query=" + search)
+      .get("http://localhost:3001/search/book?query=" + search)
       .then((res) => {
         setLoading(false);
 
