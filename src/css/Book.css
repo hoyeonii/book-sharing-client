@@ -1,0 +1,108 @@
+.Books {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+
+  height: 85vh;
+}
+
+.B-category {
+  padding: 5%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.B-category-btn {
+  width: 80%;
+  padding: 10%;
+
+  font-weight: 600;
+  align-self: center;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  align-items: center;
+  animation: movingDown 1s;
+}
+
+.B-category-btn:hover {
+  color: var(--main-stress);
+}
+
+.B-category-checkbox {
+  padding: 10px;
+  width: 88%;
+  align-self: center;
+  border-top: 1px solid black;
+  animation: movingDown 1s;
+}
+
+.B-result {
+  overflow-y: scroll;
+  padding: 2%;
+  text-align: left;
+  position: relative;
+}
+
+.B-result::-webkit-scrollbar {
+  width: 7px; /*스크롤바의 너비*/
+}
+
+.B-result::-webkit-scrollbar-thumb {
+  background-color: var(--main-stress); /*스크롤바의 색상*/
+  border-radius: 10px;
+}
+
+.B-result::-webkit-scrollbar-track {
+  background-color: transparent; /*스크롤바 트랙 색상*/
+}
+
+.B-category-small {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .B-category {
+    display: none;
+  }
+  .B-category-small {
+    padding: 1%;
+    margin: 1% 0;
+    display: flex;
+    flex-direction: column;
+    width: 85vw;
+    /* border: 1px solid salmon; */
+    top: 0;
+    z-index: 1;
+  }
+  .B-category-btn {
+    width: 90%;
+    padding: 1%;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 600;
+    align-self: center;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    align-items: center;
+    animation: movingDown 1s;
+  }
+  .B-category-checkbox {
+    padding: 10px;
+    width: 88%;
+    margin: auto;
+    text-align: center;
+    align-self: center;
+    border-top: 1px solid black;
+    animation: movingDown 1s;
+  }
+  .fa-solid {
+    display: inline;
+  }
+
+  .B-result {
+    width: 90vw;
+    padding: 2%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+}

@@ -1,0 +1,213 @@
+.PP-info {
+  border: 1px solid saddlebrown;
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr;
+  width: 100%;
+  height: 50vh;
+  padding: 3% 0;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.PP-info-img {
+  width: 100%;
+  box-shadow: 2px 3px 10px;
+  margin: 10%;
+  /* height: auto; */
+}
+.PP-info-detail {
+  padding: 0 5%;
+  text-align: left;
+  font-size: 14px;
+  border-right: 1px solid gray;
+}
+.PP-info-btn {
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* text-align: center; */
+}
+
+.PP-info-right .likingButton {
+  position: static;
+}
+
+.PP-info-detail-title {
+  font-weight: 600;
+  font-size: 20px;
+}
+.PP-info-detail-author {
+  font-weight: 600;
+
+  font-size: 17px;
+  color: gray;
+}
+.PP-info-detail-rest {
+  display: flex;
+  padding-top: 20px;
+}
+.PP-info-detail-rest-index {
+  padding: 0;
+  margin: 0;
+  margin-right: 10px;
+  list-style: none;
+  /* text-align: right; */
+  line-height: 20px;
+}
+.PP-info-detail-rest-index li {
+  width: 70px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.PP-info-detail-rest-text {
+  line-height: 20px;
+}
+/* .PP-info .likingButton {
+
+} */
+
+.PP-more {
+  /* display: flex;
+  flex-wrap: wrap;
+  overflow-x: scroll; */
+  width: 95%;
+  position: relative;
+  margin: 2.5%;
+}
+.PP-more-header {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.PP-more-carousel {
+  display: flex;
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  /* 넓이에 비해 텍스트가 길때 자동으로 줄바꿈 되지 않도록 해줌 */
+  /* // 요거하면 parent div 크기에 맞춰지지 않고 overflow 되어서 스크롤해서 보게 됨 */
+  text-align: center;
+  background-color: var(--main-light);
+}
+.PP-more-books {
+  /* border: 1px solid olive; */
+  width: 200px;
+  margin: 2% 0;
+  cursor: pointer;
+}
+.PP-more-books-imgContainer {
+  height: 120px;
+  padding: 10%;
+}
+.PP-more-books-img {
+  box-shadow: 2px 3px 5px;
+  height: 100%;
+}
+.PP-more-books:hover .PP-more-books-img {
+  transform: scale(1.1);
+}
+
+.PP-more-books-title {
+  /* border: 1px solid red; */
+  width: 200px;
+  font-weight: 600;
+  display: block;
+  /* -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical; */
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  /* ellipsis로 텍스트가 잘렸을때 맨 마지막에 ...을 추가해줌 */
+}
+
+.PP-more > button {
+  position: absolute;
+  top: 50%;
+}
+.PP-more-leftbtn {
+  left: -10px;
+}
+.PP-more-rightbtn {
+  right: -10px;
+}
+@media screen and (max-width: 768px) {
+  .PP-info {
+    border: 1px solid saddlebrown;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    padding: 2%;
+    height: 100%;
+    /* justify-content: space-between; */
+    align-items: center;
+  }
+  .PP-info-img {
+    width: 20%;
+    margin: 5%;
+    /* height: auto; */
+  }
+  .PP-info-detail {
+    padding: 0 5%;
+    text-align: left;
+    font-size: 13px;
+    border-right: none;
+  }
+  .PP-info-btn {
+    position: absolute;
+    flex-direction: row;
+    height: 10%;
+    width: 85%;
+    align-items: center;
+    /* text-align: center; */
+  }
+  .PP-info-detail-title {
+    font-size: 17px;
+  }
+  .PP-info-detail-author {
+    font-size: 15px;
+  }
+  .PP-info-user {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* width: 130px; */
+  }
+  .PP-info-right {
+    /* display: flex;
+    justify-content: space-between;
+
+    flex-direction: row; */
+    /* width: 110px; */
+  }
+}
+@media screen and (max-width: 480px) {
+  .PP-info-img {
+    width: 25%;
+    margin: 10%;
+    margin-top: 25%;
+  }
+  .PP-more-header {
+    font-size: 17px;
+  }
+  .PP-more-carousel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5% 0;
+  }
+  .PP-more-books {
+    width: 150px;
+    margin: 2% auto;
+  }
+
+  .PP-more-books-title {
+    width: 150px;
+    font-size: 14px;
+  }
+  .PP-more > button {
+    display: none;
+  }
+}

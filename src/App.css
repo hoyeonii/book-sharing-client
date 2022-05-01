@@ -1,0 +1,245 @@
+:root {
+  --main-stress: #d14031;
+  /* --yellow-stress: rgb(255, 174, 0); */
+  /* --main-normal: #ffd8c6; */
+  /* --yellow-normal: rgb(255, 220, 125); */
+  --main-light: #efe6d5;
+  --main-lighter: #fbf9f6;
+  /* --yellow-light: rgb(255, 248, 239); */
+  --gray-light: gainsboro;
+}
+@font-face {
+  font-family: "Nanum";
+  src: url("./fonts/NanumGothic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Jamak";
+  src: url("./fonts/DXMSubtitlesM-KSCpc-EUC-H.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Cafe";
+  src: url("./fonts/Cafe24Oneprettynight.ttf") format("truetype");
+}
+
+.App {
+  text-align: center;
+  font-family: "Nanum";
+  padding: 0 3%;
+  /* background-color: var(--yellow-light); */
+  min-height: 100vh;
+}
+.App-sidenav,
+.App-sidenavBack {
+  display: none;
+}
+
+header {
+  height: 10vh;
+  width: 100vw;
+  padding-bottom: 10px;
+  display: table-cell;
+  border-bottom: 1px solid rebeccapurple;
+  vertical-align: bottom;
+  flex-direction: row;
+}
+
+header > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-l {
+  width: 30%;
+  min-width: 300px;
+
+  /* border: 1px solid rebeccapurple; */
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  position: relative;
+}
+.header-burger {
+  display: none;
+  color: var(--main-stress);
+}
+header a,
+.App-sidenav a {
+  /* //Link안에 있는 text 배치할때 */
+  text-decoration: none;
+  align-self: flex-end;
+  font-weight: 600;
+  color: black;
+}
+
+button {
+  border: none;
+  background-color: var(--main-stress);
+  /* border-radius: 5px; */
+  padding: 5px 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  /* text-shadow: 0px 0px 2px black; */
+}
+.logo {
+  /* border: 1px solid rebeccapurple; */
+  font-size: 30px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: var(--main-stress);
+}
+.header a:hover,
+.App-sidenav a:hover {
+  color: var(--main-stress);
+}
+
+.header-r {
+  right: 0;
+  bottom: 0;
+  padding-top: 10px;
+  padding-right: 20px;
+  /* border: 1px solid rebeccapurple; */
+  width: 30%;
+  min-width: 300px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.header-r-search {
+  display: flex;
+  border: 1px black solid;
+  border-radius: 5px;
+}
+.header select,
+.App-sidenav select {
+  background-color: var(--main-stress);
+  border: none;
+  color: white;
+  margin-top: 10px;
+  font-family: Nanum;
+  height: 22px;
+  outline: none;
+  width: 60px;
+  align-self: center;
+}
+.searchBar {
+  border: none;
+  width: 95%;
+}
+
+@media screen and (max-width: 768px) {
+  .App {
+    padding: 0;
+  }
+  .App-sidenavBack {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    opacity: 0.8;
+    z-index: 1;
+  }
+  .App-sidenav {
+    position: fixed;
+
+    width: 40%;
+    height: 100vh;
+    background-color: var(--main-light);
+    z-index: 2;
+  }
+
+  .App-sidenav a {
+    align-self: center;
+    width: 100%;
+    padding: 5%;
+  }
+  .App-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 18% auto 0;
+    width: 80%;
+    height: 50%;
+  }
+  .header-l {
+    min-width: 100px;
+    display: flex;
+    justify-content: left;
+  }
+  .header-r {
+    justify-content: right;
+    min-width: 100px;
+  }
+  .header a,
+  .header select {
+    display: none;
+  }
+  .header-burger {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+  }
+
+  @keyframes movingRight50 {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .App-sidenav {
+    width: 60%;
+  }
+}
+
+/* helper */
+.likingButton {
+  position: absolute;
+  right: 3%;
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  border: 2px solid black;
+  border-radius: 50%;
+  background: white;
+  font-size: 1rem;
+  padding: 0;
+}
+.likingButton:hover {
+  transform: scale(1.2);
+}
+
+.available-label {
+  padding: 3px 10px;
+  margin-top: 10px;
+  font-size: 13px;
+  border-radius: 10px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  font-weight: 600;
+}
+.scrollTopBtn {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .scrollTopBtn {
+    display: block;
+    position: fixed;
+    bottom: 5%;
+    right: 1%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .scrollTopBtn {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 2%;
+    z-index: 1;
+  }
+}
