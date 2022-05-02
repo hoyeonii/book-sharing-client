@@ -1,0 +1,2 @@
+/openapi/*  https://openapi.naver.com/:splat  200
+/naver/*  https://openapi.naver.com/:splat  200
