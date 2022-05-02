@@ -36,7 +36,7 @@ function CreatePost() {
     // "https://openapi.naver.com/v1/search/book?query="
     // "proxy": "https://openapi.naver.com",
     axios
-      .get("/v1/search/book.json", {
+      .get("/api" + "/v1/search/book.json", {
         params: { query: search, display: 20 },
         headers: {
           Accept: "*/*",
