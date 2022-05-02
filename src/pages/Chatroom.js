@@ -68,7 +68,7 @@ function Chatroom() {
     let timeStamp = date.date.split("T");
     dateStamp = timeStamp[0];
     return (
-      <div style={{ textAlign: "right", fontSize: "13px" }}>
+      <div style={{ textAlign: "right", fontSize: "12px" }}>
         {timeStamp[1].slice(0, 5)}
       </div>
     );

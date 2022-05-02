@@ -24,12 +24,30 @@ function CreatePost() {
   let navigate = useNavigate();
 
   const handleSearch = () => {
+    // axios
+    //   // .get("http://localhost:3002/search/book?query=" + search)
+    //   .get("https://anbda.herokuapp.com/search/book?query=" + search)
+    //   .then((res) => {
+    //     setLoading(false);
+
+    //     setResult(res.data.items);
+    //   });
+
     axios
-      .get("http://localhost:3002/search/book?query=" + search)
+      .get("/v1/search/book.json", {
+        params: { query: search, display: 20 },
+        headers: {
+          Accept: "*/*",
+          "X-Naver-Client-Id": "sp1QymlZx1vxvhn8kJNE",
+          "X-Naver-Client-Secret": "Gxigs4hqIk",
+        },
+      })
       .then((res) => {
+        // 실제 API를 요청한다/
         setLoading(false);
 
         setResult(res.data.items);
+        console.log(res);
       });
   };
 

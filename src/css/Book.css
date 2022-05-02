@@ -56,26 +56,36 @@
   background-color: transparent; /*스크롤바 트랙 색상*/
 }
 
-.B-category-small {
+.B-category-small,
+.fa-bars {
   display: none;
 }
 @media screen and (max-width: 768px) {
+  .Books {
+    grid-template-columns: 1fr;
+  }
   .B-category {
     display: none;
   }
+  .fa-bars {
+    display: inline;
+    padding-right: 5px;
+    color: var(--main-stress);
+  }
   .B-category-small {
+    box-sizing: border-box;
     padding: 1%;
-    margin: 1% 0;
+    margin: 1% auto;
     display: flex;
     flex-direction: column;
-    width: 85vw;
+    width: 80vw;
     /* border: 1px solid salmon; */
     top: 0;
     z-index: 1;
   }
   .B-category-btn {
     width: 90%;
-    padding: 1%;
+    padding: 3%;
     margin: 0 auto;
     text-align: center;
     font-weight: 600;
@@ -101,6 +111,7 @@
   .B-result {
     width: 90vw;
     padding: 2%;
+    margin: 0 auto;
   }
 }
 

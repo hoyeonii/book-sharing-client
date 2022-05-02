@@ -18,6 +18,8 @@ import axios from "axios";
 import Search from "./pages/Search";
 import i18n from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
 // import { useTranslation }  from "react-i18next";
 import { Suspense } from "react";
 
@@ -137,6 +139,7 @@ function App() {
   }); //로그인 상태 처음에는 false
   const [language, setLanguage] = useState("eng");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  // let navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -162,6 +165,7 @@ function App() {
   const logout = () => {
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false });
+    // navigate("/profile/1");
   };
 
   const handleLanguagebtn = (e) => {
@@ -212,7 +216,9 @@ function App() {
                 <>
                   <Link to={`/profile/${authState.id}`}>{t("mypage")}</Link>
                   <Link to={`/message`}>{t("message")}</Link>
-                  <a onClick={logout}>{t("logout")}</a>
+                  <Link to="/" onClick={logout}>
+                    {t("logout")}
+                  </Link>
                 </>
               )}
               <select
@@ -259,7 +265,9 @@ function App() {
                           {t("mypage")}
                         </Link>
                         <Link to={`/message`}>{t("message")}</Link>
-                        <a onClick={logout}>{t("logout")}</a>
+                        <Link to="/" onClick={logout}>
+                          {t("logout")}
+                        </Link>
                       </>
                     )}
                     <select onChange={handleLanguagebtn}>
