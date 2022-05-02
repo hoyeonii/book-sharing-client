@@ -36,7 +36,7 @@ function CreatePost() {
   const onSubmit = (data) => {
     axios
       .post(
-        "http://localhost:3002/posts",
+        "https://anbda.herokuapp.com/posts",
         {
           title: title,
           description: description,
