@@ -14,7 +14,7 @@ function Login() {
     const data = { username: username, password: password };
     const defaultData = { ...data, level: "-", field: "-" };
     axios
-      .post("http://localhost:3001/auth/login", defaultData)
+      .post("https://anbda.herokuapp.com/auth/login", defaultData)
       .then((res) => {
         if (res.data.error) {
           alert(res.data.error);

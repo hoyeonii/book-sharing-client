@@ -18,7 +18,7 @@ function Message({ reload, setReload }) {
   ].join("-");
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/message/${authState.id}`).then((res) => {
+    axios.get(`https://anbda.herokuapp.com/message/${authState.id}`).then((res) => {
       let raw = res.data.map((el) =>
         el.send == authState.id ? el.receive : el.send
       );
@@ -27,7 +27,7 @@ function Message({ reload, setReload }) {
       // console.log(res.data.sort((a, b) => b.id - a.id));
     });
 
-    axios.get(`http://localhost:3001/auth/login`).then((res) => {
+    axios.get(`https://anbda.herokuapp.com/auth/login`).then((res) => {
       setUserList(res.data);
       // console.log(res.data.sort((a, b) => b.id - a.id));
     });

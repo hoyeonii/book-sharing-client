@@ -7,7 +7,7 @@ function Liking({ postId, alreadyLiked }) {
   const { authState } = useContext(AuthContext);
   useEffect(() => {
     let isMounted = true;
-    axios.get("http://localhost:3001/likes").then((res) => {
+    axios.get("https://anbda.herokuapp.com/likes").then((res) => {
       let likedExist = res.data.find(
         (like) => like.PostId === postId && like.UserId === authState.id
       );
@@ -22,7 +22,7 @@ function Liking({ postId, alreadyLiked }) {
     authState
       ? axios
           .post(
-            "http://localhost:3001/likes",
+            "https://anbda.herokuapp.com/likes",
             { PostId: postId },
             { headers: { accessToken: localStorage.getItem("accessToken") } }
           )
@@ -60,7 +60,7 @@ function Liking({ postId, alreadyLiked }) {
           color: `${liked && liked ? "red" : "black"}`,
           cursor: "pointer",
         }}
-        class={`fa-${liked && liked ? "solid" : "regular"} fa-lg fa-heart`}
+        class={`fa-${liked && liked ? "solid" : "regular"} fa-heart`}
       ></i>
     </button>
   );

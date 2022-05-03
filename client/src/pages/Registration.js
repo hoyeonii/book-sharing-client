@@ -25,12 +25,12 @@ function Registration() {
   const onSubmit = (data) => {
     console.log(data);
     if (data.password == data.confirmPassword) {
-      axios.get("http://localhost:3001/auth/login").then((res) => {
+      axios.get("https://anbda.herokuapp.com/auth/login").then((res) => {
         let usernameExist = res.data.find(
           (user) => user.username === data.username
         );
         if (!usernameExist) {
-          axios.post("http://localhost:3001/auth", data).then(() => {
+          axios.post("https://anbda.herokuapp.com/auth", data).then(() => {
             navigate(`/`);
 
             alert(`Successfully registered!!`);

@@ -46,10 +46,10 @@ function Profile() {
     // axios.get(`http://localhost:3001/posts/byuserId/${id}`).then((res) => {
     //   setUserPosts(res.data);
     // });
-    axios.get(`http://localhost:3001/follow/byfollowedId/${id}`).then((res) => {
+    axios.get(`https://anbda.herokuapp.com/follow/byfollowedId/${id}`).then((res) => {
       setfollowers(res.data);
     });
-    axios.get(`http://localhost:3001/follow/byfollowerId/${id}`).then((res) => {
+    axios.get(`https://anbda.herokuapp.com/follow/byfollowerId/${id}`).then((res) => {
       setfollowing(res.data);
     });
 
@@ -57,7 +57,7 @@ function Profile() {
   }, [id]);
 
   const loadUserData = () => {
-    axios.get(`http://localhost:3001/auth/basicinfo/${id}`).then((res) => {
+    axios.get(`https://anbda.herokuapp.com/auth/basicinfo/${id}`).then((res) => {
       setUserData(res.data);
       setUsername(res.data.name);
       setLocation(res.data.location);
@@ -66,10 +66,10 @@ function Profile() {
   };
 
   const loadPost = () => {
-    axios.get(`http://localhost:3001/posts/byuserId/${id}`).then((res) => {
+    axios.get(`https://anbda.herokuapp.com/posts/byuserId/${id}`).then((res) => {
       setUserPosts(res.data);
     });
-    axios.get(`http://localhost:3001/likes/likedPosts/${id}`).then((res) => {
+    axios.get(`https://anbda.herokuapp.com/likes/likedPosts/${id}`).then((res) => {
       setLikedPosts(res.data);
     });
     console.log("loaded");
@@ -78,7 +78,7 @@ function Profile() {
   const follow = () => {
     axios
       .post(
-        "http://localhost:3001/follow",
+        "https://anbda.herokuapp.com/follow",
         {
           followed: id,
         },
@@ -112,7 +112,7 @@ function Profile() {
     console.log(id);
     axios
       .put(
-        `http://localhost:3001/auth/byUserId/${id}`,
+        `https://anbda.herokuapp.com/auth/byUserId/${id}`,
         { name: username, location: location },
         {
           headers: {
@@ -136,7 +136,7 @@ function Profile() {
     console.log(postId);
     axios
       .put(
-        `http://localhost:3001/posts/byId/${postId}`,
+        `https://anbda.herokuapp.com/posts/byId/${postId}`,
         {
           available: !postAvailable,
         },
@@ -160,7 +160,7 @@ function Profile() {
   const handleUsernameSave = () => {
     axios
       .put(
-        `http://localhost:3001/auth/changeName/${id}`,
+        `https://anbda.herokuapp.com/auth/changeName/${id}`,
         {
           name: username,
         },
