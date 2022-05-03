@@ -136,6 +136,7 @@ function Home() {
             <input
               onChange={() => {
                 setOnlyAvail(!onlyAvail);
+                setGenresOpen(false);
               }}
               type="checkbox"
             ></input>

@@ -1,13 +1,18 @@
 import React from "react";
 import axios from "axios";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CategorySlider from "../helpers/CategorySlider";
 import Liking from "../helpers/Liking";
 import "../css/Home.css";
 import home from "../helpers/home2.jpg";
+import how1 from "../Images/how1.png";
+import how2 from "../Images/how2.png";
+import how3 from "../Images/how3.png";
 import { AuthContext } from "../helpers/AuthContext";
 import { initReactI18next, useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
@@ -21,6 +26,19 @@ function Home() {
       console.log(res);
     });
   }, []);
+  const [titleRef1, titleInView1] = useInView({
+    triggerOnce: false,
+    rootMargin: "100px 0px",
+  });
+  const [titleRef2, titleInView2] = useInView({
+    triggerOnce: false,
+    rootMargin: "100px 0px",
+  });
+  const [titleRef3, titleInView3] = useInView({
+    triggerOnce: false,
+    rootMargin: "100px 0px",
+  });
+
   return (
     <div className="Home">
       <section className="H-header">
@@ -78,6 +96,8 @@ function Home() {
           </div>
         </div>
         <div className="H-about2">
+          <div className="H-circle H-c1"></div>
+          <div className="H-circle H-c2"></div>
           <h1 className="H-about-header">Why</h1>
           <div className="H-about-why">
             <div className="H-about-text">
@@ -107,24 +127,59 @@ function Home() {
         <div>
           <h1 className="H-about-header">How</h1>
           <div className="H-about-text">
-            1. 내가 소장하고 있는 책을 <strong>등록</strong>해주세요 <br />
-            2. <strong>책 구경하기</strong>에서 읽고 싶은 책을 찾아보세요 <br />
-            3. 책 주인에게 <strong>메시지</strong>를 보내서 책을 바꿔
-            읽어보세요!
+            <motion.div
+              className="H-about-text1"
+              ref={titleRef1}
+              animate={{
+                scale: titleInView1 ? 1 : 0,
+                opacity: titleInView1 ? 1 : 0,
+              }}
+              transition={{ duration: 1 }}
+            >
+              <span>1</span>
+              <img src={how1} alt="how1" style={{ width: "30%" }} />
+              <div>
+                {/* <span>1</span> */}
+                1. 내가 소장하고 있는 책을 <strong>등록</strong>해주세요
+              </div>
+              <div className="H-circle-left" />
+            </motion.div>
+            <motion.div
+              className="H-about-text1"
+              ref={titleRef2}
+              animate={{
+                scale: titleInView2 ? 1 : 0,
+                opacity: titleInView2 ? 1 : 0,
+              }}
+              transition={{ duration: 1 }}
+            >
+              <span className="H-about-text1-2">2</span>
+              <div>
+                2. <strong>책 구경하기</strong>에서 읽고 싶은 책을 찾아보세요
+              </div>
+              <img src={how2} alt="how2" style={{ width: "32%" }}></img>
+              <div className="H-circle-right" />
+            </motion.div>
+            <motion.div
+              className="H-about-text1"
+              ref={titleRef3}
+              animate={{
+                scale: titleInView3 ? 1 : 0,
+                opacity: titleInView3 ? 1 : 0,
+              }}
+              transition={{ duration: 1 }}
+            >
+              <span>3</span>
+              <img src={how3} alt="how3" style={{ width: "50%" }} />
+              <div>
+                3. 책 주인에게 <strong>메시지</strong>를 보내서 책을 바꿔
+                읽어보세요!
+              </div>
+              <div className="H-circle-left" />
+            </motion.div>
           </div>
         </div>
       </section>
-
-      {/* <img
-        src="https://cdn.kbmaeil.com/news/photo/202006/849934_862504_4741.jpg"
-        alt="종이질감"
-        style={{ opacity: "0.7" }}
-      ></img> */}
-      {/* <img
-        src="https://assets.interparcel.com/blog/headers/common-shipping-problems.jpg"
-        alt="국제배송"
-        style={{ opacity: "0.7" }}
-      ></img> */}
     </div>
   );
 }

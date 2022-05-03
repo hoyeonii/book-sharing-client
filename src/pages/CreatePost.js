@@ -37,7 +37,7 @@ function CreatePost() {
     // "proxy": "https://openapi.naver.com",
     axios
       .get("/api" + "/v1/search/book.json", {
-        params: { query: search, display: 20 },
+        params: { query: search, display: 10 },
         headers: {
           Accept: "*/*",
           "X-Naver-Client-Id": "sp1QymlZx1vxvhn8kJNE",

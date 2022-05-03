@@ -60,7 +60,7 @@ function Liking({ postId, alreadyLiked }) {
           color: `${liked && liked ? "red" : "black"}`,
           cursor: "pointer",
         }}
-        class={`fa-${liked && liked ? "solid" : "regular"} fa-lg fa-heart`}
+        class={`fa-${liked && liked ? "solid" : "regular"} fa-heart`}
       ></i>
     </button>
   );

@@ -117,7 +117,7 @@ const translationsKor = {
   noresult: "검색결과가 없습니다",
   trywith: "출판사나 글쓴이, ISBN 코드를 이용해보세요",
   by: "글쓴이",
-  step2: "선택한 책의 장르를 고른 후 '등록하기' 버튼을 눌러주세요",
+  step2: "장르 선택 후, '등록하기' 버튼을 눌러주세요",
   searchAgain: "다시 검색하기",
 };
 i18n.use(initReactI18next).init({

@@ -1,10 +1,13 @@
 :root {
-  --main-stress: #d14031;
+  --main-stress: #6e4eff;
+  /* --main-stress: #d14031; */
   /* --yellow-stress: rgb(255, 174, 0); */
   /* --main-normal: #ffd8c6; */
   /* --yellow-normal: rgb(255, 220, 125); */
-  --main-light: #efe6d5;
-  --main-lighter: #fbf9f6;
+  --main-light: #d9ceff;
+  /* --main-light: #efe6d5; */
+  --main-lighter: #f1ecff;
+  /* --main-lighter: #fbf9f6; */
   /* --yellow-light: rgb(255, 248, 239); */
   --gray-light: gainsboro;
 }
@@ -144,7 +147,7 @@ button {
 
     width: 40%;
     height: 100vh;
-    background-color: var(--main-light);
+    background-color: var(--main-lighter);
     z-index: 2;
   }
 
@@ -238,8 +241,7 @@ button {
 
 @media screen and (max-width: 480px) {
   .scrollTopBtn {
-    right: 50%;
-    transform: translateX(50%);
+    right: 3%;
     bottom: 2%;
     z-index: 1;
   }

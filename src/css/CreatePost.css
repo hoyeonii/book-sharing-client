@@ -59,7 +59,8 @@
   /* height: 180px; */
   cursor: pointer;
   position: relative;
-  border-bottom: 1px solid #864800;
+  border-bottom: 1px dashed var(--main-stress);
+  /* border-bottom: 1px solid #864800; */
 }
 .CP-result:hover {
   background-color: white;
@@ -133,10 +134,14 @@
   }
 }
 @media screen and (max-width: 480px) {
+  .CP-search {
+    width: 70%;
+  }
   .CP-result-img {
     width: 80px;
     height: 120px;
     box-shadow: 2px 2px 7px;
+    margin-bottom: 5%;
   }
   .CP-submit {
     height: 50px;
