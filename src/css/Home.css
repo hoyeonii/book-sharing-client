@@ -248,7 +248,7 @@
     var(--main-stress),
     white 80%
   );
-  animation: right-to-left 3s linear infinite;
+  animation: right-to-left 30s linear infinite;
 }
 .H-c2 {
   width: 10vw;
@@ -260,7 +260,7 @@
     white 90%
   );
   /* background-color: rgb(182, 208, 255); */
-  animation: right-to-left 5s linear infinite;
+  animation: right-to-left 50s linear infinite;
 }
 .H-circle-left {
   width: 30vw;
