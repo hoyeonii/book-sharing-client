@@ -46,32 +46,42 @@ function Profile() {
     // axios.get(`http://localhost:3001/posts/byuserId/${id}`).then((res) => {
     //   setUserPosts(res.data);
     // });
-    axios.get(`https://anbda.herokuapp.com/follow/byfollowedId/${id}`).then((res) => {
-      setfollowers(res.data);
-    });
-    axios.get(`https://anbda.herokuapp.com/follow/byfollowerId/${id}`).then((res) => {
-      setfollowing(res.data);
-    });
+    axios
+      .get(`https://anbda.herokuapp.com/follow/byfollowedId/${id}`)
+      .then((res) => {
+        setfollowers(res.data);
+      });
+    axios
+      .get(`https://anbda.herokuapp.com/follow/byfollowerId/${id}`)
+      .then((res) => {
+        setfollowing(res.data);
+      });
 
     loadPost();
   }, [id]);
 
   const loadUserData = () => {
-    axios.get(`https://anbda.herokuapp.com/auth/basicinfo/${id}`).then((res) => {
-      setUserData(res.data);
-      setUsername(res.data.name);
-      setLocation(res.data.location);
-      console.log(res.data);
-    });
+    axios
+      .get(`https://anbda.herokuapp.com/auth/basicinfo/${id}`)
+      .then((res) => {
+        setUserData(res.data);
+        setUsername(res.data.name);
+        setLocation(res.data.location);
+        console.log(res.data);
+      });
   };
 
   const loadPost = () => {
-    axios.get(`https://anbda.herokuapp.com/posts/byuserId/${id}`).then((res) => {
-      setUserPosts(res.data);
-    });
-    axios.get(`https://anbda.herokuapp.com/likes/likedPosts/${id}`).then((res) => {
-      setLikedPosts(res.data);
-    });
+    axios
+      .get(`https://anbda.herokuapp.com/posts/byuserId/${id}`)
+      .then((res) => {
+        setUserPosts(res.data);
+      });
+    axios
+      .get(`https://anbda.herokuapp.com/likes/likedPosts/${id}`)
+      .then((res) => {
+        setLikedPosts(res.data);
+      });
     console.log("loaded");
   };
 
@@ -314,7 +324,7 @@ function Profile() {
                 <img
                   src={uploadBook}
                   alt="사진추가"
-                  style={{ width: "100px", height: "100px", padding: "10px" }}
+                  style={{ width: "150px", height: "150px" }}
                 />
                 <strong>{t("Upload")}</strong>
                 <div style={{ fontSize: "13px" }}>{t("MUpload")}</div>

@@ -152,11 +152,13 @@ function CreatePost() {
                     }}
                   >
                     {item.image ? (
-                      <img
-                        className="CP-result-img"
-                        src={item.image}
-                        alt="no image"
-                      />
+                      <div className="CP-result-img-container">
+                        <img
+                          className="CP-result-img"
+                          src={item.image}
+                          alt="no image"
+                        />
+                      </div>
                     ) : (
                       <Loading />
                     )}
@@ -202,7 +204,9 @@ function CreatePost() {
             {t("searchAgain")}
           </button>
           <div className="CP-result">
-            <img className="CP-result-img" src={image} alt="no image" />
+            <div className="CP-result-img-container">
+              <img className="CP-result-img" src={image} alt="no image" />
+            </div>
             <div className="CP-result-info">
               <div className="CP-result-info-title">{title}</div>
               <br />

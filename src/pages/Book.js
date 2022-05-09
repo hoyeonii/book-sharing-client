@@ -159,11 +159,13 @@ function Home() {
                   // style={{ display: `${genresOpen ? "none" : "inline-block"}` }}
                 >
                   <Liking postId={val.id} />
-                  <img
-                    className="CP-result-img"
-                    src={val.image}
-                    alt="no image"
-                  />
+                  <div className="CP-result-img-container">
+                    <img
+                      className="CP-result-img"
+                      src={val.image}
+                      alt="no image"
+                    />
+                  </div>
                   <div className="CP-result-info">
                     <Available available={val.available} />
                     <div className="CP-result-info-title">{val.title}</div>

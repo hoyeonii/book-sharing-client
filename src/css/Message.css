@@ -16,8 +16,9 @@
 .M-room {
   /* border: 1px solid var(--main-stress); */
   background-color: white;
+  border-radius: 5px;
   padding: 10px;
-  margin: 5px auto;
+  margin: 3% auto;
   position: relative;
   width: 80%;
   cursor: pointer;

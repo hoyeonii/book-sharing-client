@@ -19,6 +19,7 @@ import Search from "./pages/Search";
 import i18n from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import logo from "./Images/anbda_logo.png";
 
 // import { useTranslation }  from "react-i18next";
 import { Suspense } from "react";
@@ -30,7 +31,7 @@ const translationsEng = {
   logout: "Log out",
   mypage: "My account",
   login: "Log in",
-  signin: "Sign in",
+  signup: "Sign up",
 
   //registration
   id: "ID",
@@ -79,7 +80,7 @@ const translationsKor = {
   logout: "로그아웃",
   mypage: "마이 페이지",
   login: "로그인",
-  signin: "가입하기",
+  signup: "가입하기",
 
   //registration
   id: "닉네임",
@@ -203,14 +204,14 @@ function App() {
                 className="logo"
                 style={{ color: "var(--main-stress)" }}
               >
-                ANBDA
+                <img src={logo} alt="logo" width="150px" />
               </Link>
               <Link to="/book">{t("books")} </Link>
               <Link to="/createpost">{t("upload")}</Link>{" "}
               {!authState.status ? (
                 <>
                   <Link to="/login">{t("login")}</Link>
-                  <Link to="/registration">{t("signin")}</Link>
+                  <Link to="/registration">{t("signup")}</Link>
                 </>
               ) : (
                 <>
@@ -239,7 +240,7 @@ function App() {
                 <div className="header">
                   <div className="header-l">
                     <Link to="/" className="logo" style={{ display: "block" }}>
-                      ANBDA
+                      <img src={logo} alt="logo" width="150px" />
                     </Link>
                     <Link to="/book">{t("books")} </Link>
                     <Link to="/createpost">{t("upload")}</Link>
@@ -257,7 +258,7 @@ function App() {
                     {!authState.status ? (
                       <>
                         <Link to="/login">{t("login")}</Link>
-                        <Link to="/registration">{t("signin")}</Link>
+                        <Link to="/registration">{t("signup")}</Link>
                       </>
                     ) : (
                       <>

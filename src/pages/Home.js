@@ -13,6 +13,7 @@ import { AuthContext } from "../helpers/AuthContext";
 import { initReactI18next, useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import logo from "../Images/anbda_logo.png";
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
@@ -81,12 +82,13 @@ function Home() {
 
           <h1 className="H-text2">종이질감 그리울 때</h1>
           <h1 className="H-text3">국제배송 부담스러울 때</h1>
-          <button>{t("signin")}</button>
+          <button>{t("signup")}</button>
         </div>
       </section>
       <section className="H-about">
         <div>
           <h1 className="H-about-header">About</h1>
+
           <div className="H-about-text">
             아나바다는 독일 내에서 <strong>한국어책을 교환</strong>할 수 있는
             공간입니다. <br />
