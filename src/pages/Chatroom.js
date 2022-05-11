@@ -33,6 +33,8 @@ function Chatroom() {
   }, [reload]);
 
   const handleSubmit = () => {
+    let date = new Date();
+    date = date.setHours(date.getHours() + 2);
     axios
       .post(
         "https://anbda.herokuapp.com/message",
@@ -41,6 +43,7 @@ function Chatroom() {
           receive: id,
           text: text,
           read: false,
+          createdAt: date,
         },
         {
           headers: { accessToken: localStorage.getItem("accessToken") },
@@ -67,6 +70,7 @@ function Chatroom() {
   const ShowTimeStamp = (date) => {
     let timeStamp = date.date.split("T");
     dateStamp = timeStamp[0];
+
     return (
       <div style={{ textAlign: "right", fontSize: "12px" }}>
         {timeStamp[1].slice(0, 5)}
@@ -160,6 +164,7 @@ function Chatroom() {
             onChange={(e) => {
               setText(e.target.value);
             }}
+            placeholder="Type your message.."
             value={text}
             type="text"
           />

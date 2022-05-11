@@ -25,6 +25,8 @@ import logo from "./Images/anbda_logo.png";
 import { Suspense } from "react";
 
 const translationsEng = {
+  //Nav
+
   books: "Books",
   upload: "Upload",
   message: "Message",
@@ -32,6 +34,29 @@ const translationsEng = {
   mypage: "My account",
   login: "Log in",
   signup: "Sign up",
+
+  //home
+  header1: "When you..",
+  header2: "want a Korean book",
+  header3: "miss the paper texture",
+  header4: "",
+  // header4: "feel international shipping costs too much",
+  about1: "Billy is a space where you can exchange Korean books in Germany.",
+  about2:
+    "Paying 20euro and more just to read one book doesn't make sense, does it?",
+  about3:
+    "We are here for you! Look for the book you would like to read, and simply send a message.",
+  whyPickup: "Picking up",
+  whyFree: "Free",
+  whyShipping: "Shipping",
+  why4Euro: "4euros",
+  whyOnlyOnce: "",
+  whyBook: "Book",
+  whyInternational: "International Shipping",
+  whyGyobo: "Gyobo Bookstore",
+  how1: "Upload your book",
+  how2: "Look for a book you want to read",
+  how3: "Send a message to exchange the book!",
 
   //registration
   id: "ID",
@@ -43,7 +68,7 @@ const translationsEng = {
   city: "City",
   mybook: "My book",
   liked: "Liked",
-  MUpload: "The more books you have, the more requests you get",
+  MUpload: `More books, More requests`,
   available: "Available",
   notAvailable: "not Available",
 
@@ -54,12 +79,12 @@ const translationsEng = {
   alsoHas: "also has..",
 
   //book
-  all: "All",
-  novel: "Novel",
-  essay: "Essay",
-  history: "History",
-  kids: "Kids",
-  etc: "Etc.",
+  전체: "All",
+  소설: "Novel",
+  에세이: "Essay",
+  역사: "History",
+  아동: "Kids",
+  기타: "Etc.",
   onlyAvailable: "Available",
 
   //upload
@@ -82,6 +107,27 @@ const translationsKor = {
   login: "로그인",
   signup: "가입하기",
 
+  //home
+  header1: "그럴 때 있지 않아요? ",
+  header2: "한국책 읽고 싶을 때",
+  header3: "종이질감 그리울 때",
+  header4: "국제배송 부담스러울 때",
+  about1: "아나바다는 독일 내에서 한국어책을 교환할 수 있는 공간입니다",
+  about2:
+    "‘내가 읽고 싶은 책, 독일에 한 권 쯤은 있지 않을까?’라는 생각으로 시작되었습니다",
+  about3: "읽고 싶은 책을 내 책과 바꿔 읽어보세요",
+  whyPickup: "직거래 하면",
+  whyFree: "무료",
+  whyShipping: "왕복 택배비",
+  why4Euro: "4유로",
+  whyOnlyOnce: "한 번 읽을",
+  whyBook: "책값",
+  whyInternational: "해외배송비",
+  whyGyobo: "교보문고",
+  how1: `소장하고 있는 책을 등록 해주세요`,
+  how2: "책 구경하기에서 읽고 싶은 책을 찾아보세요",
+  how3: "책 주인에게 메시지를 보내 책을 바꿔 읽어보세요!",
+
   //registration
   id: "닉네임",
   location: "사는 도시",
@@ -102,12 +148,12 @@ const translationsKor = {
   description: "소개",
   alsoHas: "님의 다른 책",
   //book
-  all: "전체",
-  novel: "소설",
-  essay: "에세이",
-  history: "역사",
-  kids: "아동",
-  etc: "기타",
+  전체: "전체",
+  소설: "소설",
+  에세이: "에세이",
+  역사: "역사",
+  아동: "아동",
+  기타: "기타",
   onlyAvailable: "대여가능만",
 
   //upload
@@ -204,7 +250,7 @@ function App() {
                 className="logo"
                 style={{ color: "var(--main-stress)" }}
               >
-                <img src={logo} alt="logo" width="150px" />
+                <img src={logo} alt="logo" className="header-l-logo" />
               </Link>
               <Link to="/book">{t("books")} </Link>
               <Link to="/createpost">{t("upload")}</Link>{" "}
@@ -240,7 +286,7 @@ function App() {
                 <div className="header">
                   <div className="header-l">
                     <Link to="/" className="logo" style={{ display: "block" }}>
-                      <img src={logo} alt="logo" width="150px" />
+                      <img src={logo} alt="logo" className="header-l-logo" />
                     </Link>
                     <Link to="/book">{t("books")} </Link>
                     <Link to="/createpost">{t("upload")}</Link>

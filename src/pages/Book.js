@@ -71,12 +71,12 @@ function Home() {
   };
 
   const category = [
-    t("all"),
-    t("novel"),
-    t("essay"),
-    t("history"),
-    t("kids"),
-    t("etc"),
+    t("전체"),
+    t("소설"),
+    t("에세이"),
+    t("역사"),
+    t("아동"),
+    t("기타"),
   ];
   return (
     <div className="Books">
@@ -88,6 +88,9 @@ function Home() {
               key={i}
               onClick={() => {
                 handleCategorybtn(val);
+              }}
+              style={{
+                color: `${t(filter) == val ? "var(--main-stress)" : ""}`,
               }}
             >
               {val}
@@ -113,7 +116,8 @@ function Home() {
             setGenresOpen(!genresOpen);
           }}
         ></i>
-        {filter + ` > ` + filteredList.length + " results"}
+        <label>{filteredList.length + " results"}</label>
+        {/* {filter + ` > ` + filteredList.length + " results"} */}
         <div
           className="B-category-small"
           style={{ display: `${genresOpen ? "block" : "none"}` }}

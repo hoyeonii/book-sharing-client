@@ -18,14 +18,16 @@ function Message({ reload, setReload }) {
   ].join("-");
 
   useEffect(() => {
-    axios.get(`https://anbda.herokuapp.com/message/${authState.id}`).then((res) => {
-      let raw = res.data.map((el) =>
-        el.send == authState.id ? el.receive : el.send
-      );
-      setChatroom([...new Set(raw)]);
-      setChats(res.data.sort((a, b) => b.id - a.id));
-      // console.log(res.data.sort((a, b) => b.id - a.id));
-    });
+    axios
+      .get(`https://anbda.herokuapp.com/message/${authState.id}`)
+      .then((res) => {
+        let raw = res.data.map((el) =>
+          el.send == authState.id ? el.receive : el.send
+        );
+        setChatroom([...new Set(raw)]);
+        setChats(res.data.sort((a, b) => b.id - a.id));
+        // console.log(res.data.sort((a, b) => b.id - a.id));
+      });
 
     axios.get(`https://anbda.herokuapp.com/auth/login`).then((res) => {
       setUserList(res.data);
@@ -39,7 +41,7 @@ function Message({ reload, setReload }) {
   // };
   return (
     <div className="Message">
-      <h3>Message</h3>
+      <h3>Messages</h3>
 
       <div className="M-rooms">
         {chatroom &&

@@ -205,6 +205,12 @@
 .H-about-why > div {
   text-align: center;
 }
+.H-about-vs {
+  color: var(--main-stress);
+  padding: 2%;
+  border-radius: 50%;
+  background-color: var(--main-lighter);
+}
 .H-about-text1 {
   display: flex;
   margin: 15% 0;
@@ -291,20 +297,36 @@
   }
 
   25% {
-    transform: translate(20vw, 25vw) rotate(90deg);
+    transform: translate(15vw, 25vw) rotate(90deg);
   }
   50% {
-    transform: translate(60vw, 0px) rotate(180deg);
+    transform: translate(50vw, 0px) rotate(180deg);
     opacity: 1;
   }
   75% {
-    transform: translate(20vw, -25vw) rotate(270deg);
+    transform: translate(15vw, -25vw) rotate(270deg);
   }
   100% {
     transform: translate(-20vw, 0px) rotate(360deg);
     opacity: 0.2;
     /* transform: rotate(360deg); */
   }
+}
+
+.H-footer {
+  position: relative;
+  /* height: 10vh; */
+  padding: 2%;
+  background-color: var(--main-lighter);
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+}
+
+.H-footer-logo {
+  width: 150px;
+  margin: auto;
 }
 
 /* 태블릿 사이즈 */
@@ -355,7 +377,7 @@
   }
   .H-about-text {
     font-size: 15px;
-    padding-top: 5%;
+    padding: 5% 0;
   }
 
   .H-about a {
@@ -364,10 +386,21 @@
   .H-about-text1 span {
     font-size: 3em;
   }
+  .H-about-why {
+    flex-direction: column;
+    /* justify-content: space-around; */
+  }
   .H-c1 {
     top: 55vh;
   }
   .H-c2 {
     top: 60vh;
+  }
+  .H-footer {
+    font-size: 12px;
+  }
+
+  .H-footer-logo {
+    width: 100px;
   }
 }

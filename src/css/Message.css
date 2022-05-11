@@ -1,11 +1,12 @@
 .Message {
   padding: 5%;
-  background-color: var(--main-light);
-  height: 65vh;
+  background-color: var(--main-lighter);
+  height: 68vh;
+  border-radius: 0px 0px 30px 30px;
 }
 
 .Chatroom .Message {
-  padding: 0;
+  padding: 0.5%;
   width: 25%;
   height: 85vh;
 }
@@ -18,7 +19,7 @@
   background-color: white;
   border-radius: 5px;
   padding: 10px;
-  margin: 3% auto;
+  margin: 10px auto;
   position: relative;
   width: 80%;
   cursor: pointer;

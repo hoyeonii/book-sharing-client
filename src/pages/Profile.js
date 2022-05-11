@@ -332,7 +332,15 @@ function Profile() {
             )}
 
             {userPosts.map((post, i) => (
-              <div key={i} className="P-book" style={{ cursor: "default" }}>
+              <div
+                key={i}
+                className="P-book"
+                // style={{ cursor: "default" }}
+                onClick={() => {
+                  navigate(`/post/${post.id}`);
+                  console.log(post.id);
+                }}
+              >
                 <div className="P-book-detail">
                   <div className="P-book-img">
                     <img

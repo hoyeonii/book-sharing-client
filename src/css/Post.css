@@ -1,18 +1,19 @@
 .PP-info {
-  border: 1px solid saddlebrown;
+  /* border: 1px solid saddlebrown; */
   display: grid;
-  grid-template-columns: 1fr 5fr 2fr;
-  width: 100%;
+  grid-template-columns: 1fr 4fr 1fr;
+  width: 90%;
   height: 50vh;
   padding: 3% 0;
+  margin: auto;
   /* justify-content: space-between; */
   align-items: center;
 }
 
 .PP-info-img {
-  width: 100%;
+  width: 80%;
   box-shadow: 2px 3px 10px;
-  margin: 10%;
+  /* margin: 20%; */
   /* height: auto; */
 }
 .PP-info-detail {
@@ -87,10 +88,11 @@
   width: auto;
   overflow: hidden;
   white-space: nowrap;
+  border-radius: 10px;
   /* 넓이에 비해 텍스트가 길때 자동으로 줄바꿈 되지 않도록 해줌 */
   /* // 요거하면 parent div 크기에 맞춰지지 않고 overflow 되어서 스크롤해서 보게 됨 */
   text-align: center;
-  background-color: var(--main-lighter);
+  background-color: var(--gray-light);
 }
 .PP-more-books {
   /* border: 1px solid olive; */

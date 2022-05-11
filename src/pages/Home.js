@@ -14,6 +14,7 @@ import { initReactI18next, useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import logo from "../Images/anbda_logo.png";
+import mainPic from "../Images/mainPic.jfif";
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
@@ -57,7 +58,7 @@ function Home() {
         <div className="H-header-img1">
           <img
             className="H-header-img1-img"
-            src="https://image.yes24.com/goods/30149037/XL"
+            src={mainPic}
             alt="덕혜옹주"
             // style={{ width: "200px" }}
           ></img>
@@ -77,11 +78,11 @@ function Home() {
           // style={{ width: "200px" }}
         ></img>
         <div className="H-text">
-          <h5>그럴 때 있지 않아요?</h5>
-          <h1 className="H-text1">한국책 읽고 싶을 때</h1>
+          <h5> {t(`header1`)}</h5>
+          <h1 className="H-text1">{t(`header2`)}</h1>
 
-          <h1 className="H-text2">종이질감 그리울 때</h1>
-          <h1 className="H-text3">국제배송 부담스러울 때</h1>
+          <h1 className="H-text2">{t(`header3`)}</h1>
+          <h1 className="H-text3">{t(`header4`)}</h1>
           <button>{t("signup")}</button>
         </div>
       </section>
@@ -90,11 +91,16 @@ function Home() {
           <h1 className="H-about-header">About</h1>
 
           <div className="H-about-text">
-            아나바다는 독일 내에서 <strong>한국어책을 교환</strong>할 수 있는
+            {t(`about1`)}
+            <br />
+            {t(`about2`)}
+            <br />
+            {t(`about3`)}
+            {/* 아나바다는 독일 내에서 <strong>한국어책을 교환</strong>할 수 있는
             공간입니다. <br />
             ‘내가 읽고 싶은 책, 독일에 한 권 쯤은 있지 않을까?’라는 생각으로
             시작되었습니다. <br />
-            읽고 싶은 책을 내 책과 바꿔 읽어보세요
+            읽고 싶은 책을 내 책과 바꿔 읽어보세요 */}
           </div>
         </div>
         <div className="H-about2">
@@ -103,25 +109,26 @@ function Home() {
           <h1 className="H-about-header">Why</h1>
           <div className="H-about-why">
             <div className="H-about-text">
-              직거래 하면<strong> 무료</strong>
+              {t("whyPickup")}
+              <strong> {t("whyFree")}</strong>
               <br />
               {/* <a href={`/profile/${authState.id}`}> 거주도시 등록하기</a>
               <br /> */}
               or
               <br />
-              왕복 택배비 <strong>4유로</strong>
+              {t("whyShipping")} <strong>{t("why4Euro")}</strong>
               <br />
               <a href="https://www.deutschepost.de/de/w/buecherundwarensendung.html">
-                Deutschepost 기준
+                Deutschepost
               </a>
             </div>
             <div className="H-about-vs">vs </div>
             <div className="H-about-text">
-              한 번 읽을 <strong>책값</strong>
+              {t("whyOnlyOnce")} <strong>{t("whyBook")}</strong>
               <br />+<br />
-              <strong>해외배송비</strong> <br />
+              <strong>{t("whyInternational")}</strong> <br />
               <a href="https://www.kyobobook.co.kr/order/DhlContents.jsp#">
-                교보문고 기준
+                {t("whyGyobo")}
               </a>
             </div>
           </div>
@@ -136,13 +143,14 @@ function Home() {
                 scale: titleInView1 ? 1 : 0,
                 opacity: titleInView1 ? 1 : 0,
               }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.7 }}
             >
               <span>1</span>
               <img src={how1} alt="how1" style={{ width: "30%" }} />
               <div>
                 {/* <span>1</span> */}
-                1. 내가 소장하고 있는 책을 <strong>등록</strong>해주세요
+                {/* 내가 소장하고 있는 책을 <strong>등록</strong>해주세요 */}
+                {t(`how1`)}
               </div>
               <div className="H-circle-left" />
             </motion.div>
@@ -153,11 +161,12 @@ function Home() {
                 scale: titleInView2 ? 1 : 0,
                 opacity: titleInView2 ? 1 : 0,
               }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.7 }}
             >
               <span className="H-about-text1-2">2</span>
               <div>
-                2. <strong>책 구경하기</strong>에서 읽고 싶은 책을 찾아보세요
+                {/* <strong>책 구경하기</strong>에서 읽고 싶은 책을 찾아보세요 */}
+                {t("how2")}
               </div>
               <img src={how2} alt="how2" style={{ width: "32%" }}></img>
               <div className="H-circle-right" />
@@ -169,19 +178,24 @@ function Home() {
                 scale: titleInView3 ? 1 : 0,
                 opacity: titleInView3 ? 1 : 0,
               }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.7 }}
             >
               <span>3</span>
               <img src={how3} alt="how3" style={{ width: "50%" }} />
               <div>
-                3. 책 주인에게 <strong>메시지</strong>를 보내서 책을 바꿔
-                읽어보세요!
+                {/* 책 주인에게 <strong>메시지</strong>를 보내 책을 바꿔 읽어보세요! */}
+                {t("how3")}
               </div>
               <div className="H-circle-left" />
             </motion.div>
           </div>
         </div>
       </section>
+      <footer className="H-footer">
+        <img src={logo} alt="logo" className="H-footer-logo" />
+        <span>©2022 BillyDa</span>
+        <span>Contact : billyda@gmail.com</span>
+      </footer>
     </div>
   );
 }

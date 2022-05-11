@@ -9,6 +9,8 @@ import "../css/Post.css";
 import Liking from "../helpers/Liking";
 import Available from "../helpers/Available";
 import { initReactI18next, useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Post() {
   let { id } = useParams();
@@ -64,7 +66,8 @@ function Post() {
       )
       .then((response) => {
         if (localStorage.getItem("accessToken") == null) {
-          alert(`Log in to leave comment`);
+          // alert(`Log in to leave comment`);
+          toast("Log in to leave comment", { type: "error" });
           navigate("/login");
         }
 
@@ -106,7 +109,11 @@ function Post() {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {
-        alert("Post deleted!");
+        toast("Wow so easy!");
+        // alert("Post deleted!");
+        // toast("Post deleted!", { type: "success" });
+        // toast.warning("dleee");
+
         navigate("/book");
       });
   };
@@ -155,6 +162,7 @@ function Post() {
                 >
                   Delete
                 </button>
+                <ToastContainer />
               </div>
             ) : (
               <div>

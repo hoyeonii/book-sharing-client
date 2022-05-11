@@ -1,10 +1,10 @@
 .Chatroom {
   display: flex;
   justify-content: space-around;
-  background-color: var(--main-lighter);
+  /* background-color: var(--main-lighter); */
 }
 .Chat {
-  width: 70%;
+  width: 80%;
 }
 
 .Chat h3 {
@@ -36,7 +36,12 @@
 }
 
 .Chat-message-byDate {
-  background-color: var(--gray-light);
+  background-color: var(--main-lighter);
+  width: 15%;
+  margin: auto;
+  border-radius: 50px;
+  align-items: center;
+  font-size: 13px;
 }
 .Chat-message-me,
 .Chat-message-otherside {
@@ -44,20 +49,22 @@
   width: 50%;
   font-size: 15px;
   text-align: left;
-  padding: 2% 3% 1%;
+  padding: 1.5% 2% 1%;
   margin: 3%;
-  border-radius: 10px;
 }
 .Chat-message-me {
   /* div 안의 div가 맨 오른쪽에 정렬되도록 */
   box-shadow: 2px 2px 2px gray;
   margin-left: auto;
-  background-color: var(--main-lighter);
+  background-color: var(--gray-light);
+  border-radius: 20px 20px 0px 20px;
 }
 .Chat-message-otherside {
   /* border: 1px solid saddlebrown; */
   box-shadow: 2px 2px 2px gray;
-  background-color: var(--main-light);
+  background-color: var(--main-stress);
+  color: white;
+  border-radius: 20px 20px 20px 0px;
 }
 
 .Chat-message-delete {
@@ -74,12 +81,13 @@
 }
 
 .Chat input {
-  padding: 10px;
+  padding: 10px 15px;
   width: 70%;
   margin: 1% 1%;
   outline: none;
+  border-radius: 50px;
   border: none;
-  border: 2px solid var(--main-light);
+  box-shadow: 0px 0px 3px var(--main-stress);
 }
 
 @media screen and (max-width: 768px) {
@@ -88,6 +96,10 @@
   }
   .Chat {
     width: 98%;
+  }
+  .Chat-message-byDate {
+    width: 20%;
+    /* font-size: 12px; */
   }
 }
 @media screen and (max-width: 480px) {
@@ -99,6 +111,13 @@
     font-size: 15px;
   }
   .Chat-message-byDate {
-    font-size: 10px;
+    width: 30%;
   }
 }
+/* .Chat-message-byDate {
+    background-color: var(--main-lighter);
+    width: 15%;
+    margin: auto;
+    border-radius: 50px;
+    align-items: center;
+} */

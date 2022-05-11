@@ -42,7 +42,9 @@
   text-align: left;
   position: relative;
 }
-
+.B-result > label {
+  padding-left: 3%;
+}
 .B-result::-webkit-scrollbar {
   width: 7px; /*스크롤바의 너비*/
 }

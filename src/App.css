@@ -4,12 +4,18 @@
   /* --yellow-stress: rgb(255, 174, 0); */
   /* --main-normal: #ffd8c6; */
   /* --yellow-normal: rgb(255, 220, 125); */
-  --main-light: #d9ceff;
+  --main-light: #cee7ff;
+
+  /* --main-light: #d9ceff; */
   /* --main-light: #efe6d5; */
   --main-lighter: #f1ecff;
   /* --main-lighter: #fbf9f6; */
   /* --yellow-light: rgb(255, 248, 239); */
-  --gray-light: gainsboro;
+  --gray-light: rgb(241, 241, 241);
+}
+@font-face {
+  font-family: "Sora";
+  src: url("./fonts/Sora-VariableFont_wght.ttf") format("truetype");
 }
 @font-face {
   font-family: "Nanum";
@@ -26,8 +32,7 @@
 
 .App {
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Sora;
   padding: 0 3%;
   /* background-color: var(--yellow-light); */
   min-height: 100vh;
@@ -53,7 +58,7 @@ header > div {
 }
 
 .header-l {
-  width: 30%;
+  width: 35%;
   min-width: 300px;
 
   /* border: 1px solid rebeccapurple; */
@@ -61,6 +66,9 @@ header > div {
   justify-content: space-between;
   padding-left: 20px;
   position: relative;
+}
+.header-l-logo {
+  width: 200px;
 }
 .header-burger {
   display: none;
@@ -78,7 +86,7 @@ header a,
 button {
   border: none;
   background-color: var(--main-stress);
-  /* border-radius: 5px; */
+  border-radius: 5px;
   padding: 5px 10px;
   color: white;
   font-weight: 600;
@@ -170,6 +178,9 @@ button {
     min-width: 100px;
     display: flex;
     justify-content: left;
+  }
+  .header-l-logo {
+    width: 150px;
   }
   .header-r {
     justify-content: right;
