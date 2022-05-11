@@ -36,12 +36,12 @@ const translationsEng = {
   signup: "Sign up",
 
   //home
-  header1: "When you..",
-  header2: "want a Korean book",
-  header3: "miss the paper texture",
-  header4: "",
+  header1: "Let's read!",
+  header2: "Exchange your ",
+  header3: "Korean books",
+  header4: "with other people",
   // header4: "feel international shipping costs too much",
-  about1: "Billy is a space where you can exchange Korean books in Germany.",
+  about1: "BillyDa is a space where you can exchange Korean books in Germany.",
   about2:
     "Paying 20euro and more just to read one book doesn't make sense, does it?",
   about3:
