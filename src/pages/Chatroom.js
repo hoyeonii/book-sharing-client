@@ -15,17 +15,26 @@ function Chatroom() {
   const [userList, setUserList] = useState([]);
 
   const chatbox = useRef();
-  let dateStamp = "26";
+  let dateStamp = "";
   let navigate = useNavigate();
 
   useEffect(() => {
     axios
       .get(`https://anbda.herokuapp.com/message/${authState.id}`)
       .then((res) => {
-        setMessage(res.data);
+        setMessage(res.data.filter((el) => el.send == id || el.receive == id));
         scrollDown();
-        // console.log(res.data);
-      });
+        console.log(res.data);
+        return res.data.filter((el) => el.send == id || el.receive == id);
+      })
+      .then((res) =>
+        res
+          .filter((el) => el.read === false)
+          .forEach((el) => {
+            console.log(el.text);
+            handleUpdateRead(el.id);
+          })
+      );
     axios.get(`https://anbda.herokuapp.com/auth/login`).then((res) => {
       setUserList(res.data);
       // console.log(res.data.sort((a, b) => b.id - a.id));
@@ -90,6 +99,27 @@ function Chatroom() {
       });
   };
 
+  const handleUpdateRead = (messageId) => {
+    axios
+      .put(
+        `https://anbda.herokuapp.com/message/byId/${messageId}`,
+        {
+          read: 1,
+        },
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+        }
+      )
+      .then((response) => {
+        // console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="Chatroom">
       <Message setReload={setReload} reload={reload} />
@@ -121,36 +151,34 @@ function Chatroom() {
         clike to see message
       </button> */}
         <div className="Chat-messages">
-          {message
-            .filter((el) => el.send == id || el.receive == id)
-            .map((el, i) => (
-              <div className="Chat-message">
-                <SortbyDate createdAt={el.createdAt.split("T")[0]} />
+          {message.map((el, i) => (
+            <div className="Chat-message">
+              <SortbyDate createdAt={el.createdAt.split("T")[0]} />
 
-                <div
-                  key={i}
-                  className={
-                    el.send == authState.id
-                      ? "Chat-message-me"
-                      : `Chat-message-otherside`
-                  }
-                >
-                  {el.text}
+              <div
+                key={i}
+                className={
+                  el.send == authState.id
+                    ? "Chat-message-me"
+                    : `Chat-message-otherside`
+                }
+              >
+                {el.text}
 
-                  <ShowTimeStamp date={el.createdAt} />
-                  {el.send == authState.id && (
-                    <button
-                      className="Chat-message-delete"
-                      onClick={() => {
-                        handleMessageDelete(el.id);
-                      }}
-                    >
-                      x
-                    </button>
-                  )}
-                </div>
+                <ShowTimeStamp date={el.createdAt} />
+                {el.send == authState.id && (
+                  <button
+                    className="Chat-message-delete"
+                    onClick={() => {
+                      handleMessageDelete(el.id);
+                    }}
+                  >
+                    x
+                  </button>
+                )}
               </div>
-            ))}
+            </div>
+          ))}
           <div ref={chatbox} />
         </div>
         <form

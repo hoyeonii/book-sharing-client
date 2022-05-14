@@ -10,7 +10,6 @@ import PageNotFound from "./pages/PageNotFound.js";
 import Profile from "./pages/Profile.js";
 import Message from "./pages/Message.js";
 import Chatroom from "./pages/Chatroom.js";
-import CategorySlider from "./helpers/CategorySlider";
 import { AuthContext } from "./helpers/AuthContext";
 import { LanguageContext } from "./helpers/LanguageContext";
 import { useState, useEffect } from "react";
@@ -18,10 +17,7 @@ import axios from "axios";
 import Search from "./pages/Search";
 import i18n from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import logo from "./Images/anbda_logo.png";
-
-// import { useTranslation }  from "react-i18next";
 import { Suspense } from "react";
 
 const translationsEng = {
