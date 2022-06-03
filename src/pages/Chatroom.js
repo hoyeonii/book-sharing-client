@@ -26,15 +26,15 @@ function Chatroom() {
         scrollDown();
         console.log(res.data);
         return res.data.filter((el) => el.send == id || el.receive == id);
-      })
-      .then((res) =>
-        res
-          .filter((el) => el.read === false)
-          .forEach((el) => {
-            console.log(el.text);
-            handleUpdateRead(el.id);
-          })
-      );
+      });
+    // .then((res) =>
+    //   res
+    //     .filter((el) => el.read === false)
+    //     .forEach((el) => {
+    //       console.log(el.text);
+    //       handleUpdateRead(el.id);
+    //     })
+    // );
     axios.get(`https://anbda.herokuapp.com/auth/login`).then((res) => {
       setUserList(res.data);
       // console.log(res.data.sort((a, b) => b.id - a.id));
@@ -99,26 +99,26 @@ function Chatroom() {
       });
   };
 
-  const handleUpdateRead = (messageId) => {
-    axios
-      .put(
-        `https://anbda.herokuapp.com/message/byId/${messageId}`,
-        {
-          read: 1,
-        },
-        {
-          headers: {
-            accessToken: localStorage.getItem("accessToken"),
-          },
-        }
-      )
-      .then((response) => {
-        // console.log(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handleUpdateRead = (messageId) => {
+  //   axios
+  //     .put(
+  //       `https://anbda.herokuapp.com/message/byId/${messageId}`,
+  //       {
+  //         read: 1,
+  //       },
+  //       {
+  //         headers: {
+  //           accessToken: localStorage.getItem("accessToken"),
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       // console.log(response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <div className="Chatroom">

@@ -12,33 +12,38 @@ function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   const [filter, setFilter] = useState("전체");
   const [onlyAvail, setOnlyAvail] = useState(false);
-  const [filteredList, setFilteredList] = useState([]);
   const [genresOpen, setGenresOpen] = useState(false);
   const { t } = useTranslation();
   const target = useRef();
 
   let navigate = useNavigate();
   useEffect(() => {
-    axios.get("https://anbda.herokuapp.com/posts").then((res) => {
-      setListOfPosts(res.data);
-      setFilteredList(res.data);
-    });
+    loadData();
   }, []);
 
-  // 여러 필터를 걸고 싶을때
   useEffect(() => {
-    console.log(filter);
-    let updatedList = [...listOfPosts];
+    let copiedList = [...listOfPosts];
     if (filter !== "전체") {
-      updatedList = updatedList.filter((el) => el.genres === filter);
+      copiedList = copiedList.filter((el) => el.genres === filter);
     }
     if (onlyAvail == true) {
-      updatedList = updatedList.filter((el) => el.available == 1);
+      copiedList = copiedList.filter((el) => el.available == 1);
     }
-    console.log(updatedList);
-    setFilteredList(updatedList);
-    console.log(filteredList);
+    setListOfPosts(copiedList);
   }, [filter, onlyAvail]);
+
+  let params = {
+    pageSize: 1,
+    // offset: offset,
+  };
+  const loadData = () => {
+    axios
+      .get("https://anbda.herokuapp.com/posts", { params: params })
+      .then((res) => {
+        setListOfPosts(...listOfPosts, res.data);
+        params.offset = res.data.offset;
+      });
+  };
 
   const handleCategorybtn = (val) => {
     let filter = "";
@@ -116,8 +121,8 @@ function Home() {
             setGenresOpen(!genresOpen);
           }}
         ></i>
-        <label>{filteredList.length + " results"}</label>
-        {/* {filter + ` > ` + filteredList.length + " results"} */}
+        <label>{listOfPosts.length + " results"}</label>
+        {/* {filter + ` > ` + listOfPosts.length + " results"} */}
         <div
           className="B-category-small"
           style={{ display: `${genresOpen ? "block" : "none"}` }}
@@ -147,7 +152,7 @@ function Home() {
             <label>{t("onlyAvailable")}</label>
           </div>
         </div>
-        {filteredList
+        {listOfPosts
           .sort(function (a, b) {
             return b.id - a.id;
           })
@@ -190,96 +195,3 @@ function Home() {
 }
 
 export default Home;
-
-// //rfce 자동생성
-
-// import React from "react";
-// import axios from "axios";
-// import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import CategorySlider from "../helpers/CategorySlider";
-// import Liking from "../helpers/Liking";
-// // import ThumbUpAltIcon from '@mate'
-
-// function Portfolio() {
-//   const [listOfPosts, setListOfPosts] = useState([]);
-//   const [likes, setLikes] = useState([]);
-//   let navigate = useNavigate();
-
-//   useEffect(() => {
-//     axios.get("http://localhost:3001/posts").then((res) => {
-//       setListOfPosts(res.data);
-//       console.log(listOfPosts);
-//     });
-
-//     axios.get(`http://localhost:3001/likes`).then((res) => {
-//       setLikes(res.data);
-//       // console.log(likes.filter((el) => el.id == 23).length);
-//     });
-//   }, []);
-
-//   const likeAPost = (postId) => {
-//     axios
-//       .post(
-//         "http://localhost:3001/likes",
-//         { PostId: postId },
-//         { headers: { accessToken: localStorage.getItem("accessToken") } }
-//       )
-//       .then((res) => {
-//         setListOfPosts(
-//           listOfPosts.map((post) => {
-//             if (post.id === postId) {
-//               if (res.data.liked) {
-//                 return { ...post, Likes: [...post.Likes, 1] };
-//               } else {
-//                 let sumLikes = post.Likes;
-//                 sumLikes.pop();
-//                 return { ...post, Likes: sumLikes };
-//               }
-//             } else {
-//               return post;
-//             }
-//           })
-//         );
-//       });
-//   };
-
-//   return (
-//     <div className="Home">
-//       <CategorySlider />
-//       <div>it should be here</div>
-
-//       {listOfPosts.map((val, key) => {
-//         return (
-//           <>
-//             <div key={key} className="post">
-//               <div
-//                 onClick={() => {
-//                   navigate(`/post/${val.id}`);
-//                 }}
-//               >
-//                 {val.postText}
-//                 {val.genres}
-//               </div>
-//               {/* <span>{val.id}</span> */}
-
-//               {/* <span>{val.id}</span> */}
-//               <span>{val.Likes.length}</span>
-//               <button
-//                 onClick={() => {
-//                   likeAPost(val.id); // ()=>{로 안덮어주고 } likeAPost(val.id만 썼을때는 클릭하지 않아도 function이 계속 trigger 됐음. 왤까)
-//                   console.log(val);
-//                 }}
-//               >
-//                 like
-//               </button>
-//               <Liking postId={val.id} />
-//             </div>
-//           </>
-//         );
-//       })}
-//     </div>
-//   );
-// }
-
-// export default Portfolio;
