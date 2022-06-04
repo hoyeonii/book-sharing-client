@@ -9,6 +9,8 @@ import ScrollTopBtn from "../helpers/ScrollTopBtn";
 import { initReactI18next, useTranslation } from "react-i18next";
 
 function Home() {
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [listOfPosts, setListOfPosts] = useState([]);
   const [filter, setFilter] = useState("전체");
   const [onlyAvail, setOnlyAvail] = useState(false);
@@ -18,36 +20,40 @@ function Home() {
 
   let navigate = useNavigate();
   useEffect(() => {
-    loadData();
+    axios
+      .get("https://anbda.herokuapp.com/posts")
+      .then((res) => {
+        return res.data.sort((a, b) => b.id - a.id);
+      })
+      .then((res) => {
+        setData(res);
+        setFilteredData(res);
+        setListOfPosts(res.slice(0, 5));
+      });
   }, []);
 
   useEffect(() => {
-    let copiedList = [...listOfPosts];
+    let copiedList = [...data];
     if (filter !== "전체") {
       copiedList = copiedList.filter((el) => el.genres === filter);
     }
     if (onlyAvail == true) {
       copiedList = copiedList.filter((el) => el.available == 1);
     }
-    setListOfPosts(copiedList);
+    console.log(copiedList);
+    setFilteredData(copiedList);
+    setListOfPosts(copiedList.slice(0, 5));
   }, [filter, onlyAvail]);
 
-  let params = {
-    pageSize: 1,
-    // offset: offset,
-  };
-  const loadData = () => {
-    axios
-      .get("https://anbda.herokuapp.com/posts", { params: params })
-      .then((res) => {
-        setListOfPosts(...listOfPosts, res.data);
-        params.offset = res.data.offset;
-      });
+  const showMoreItems = () => {
+    console.log(data);
+    console.log(data.slice(0, listOfPosts.length + 5));
+    setListOfPosts(filteredData.slice(0, listOfPosts.length + 5));
   };
 
   const handleCategorybtn = (val) => {
+    setListOfPosts([]);
     let filter = "";
-    console.log(val);
     switch (val) {
       case "All":
         filter = "전체";
@@ -71,7 +77,6 @@ function Home() {
       default:
         filter = val;
     }
-    console.log(filter);
     setFilter(filter);
   };
 
@@ -153,9 +158,9 @@ function Home() {
           </div>
         </div>
         {listOfPosts
-          .sort(function (a, b) {
-            return b.id - a.id;
-          })
+          // .sort(function (a, b) {
+          //   return b.id - a.id;
+          // })
           .map((val, key) => {
             return (
               <div style={{ display: `${genresOpen ? "none" : "block"}` }}>
@@ -189,6 +194,21 @@ function Home() {
               </div>
             );
           })}
+        <button className="CP-result-showMoreBtn" onClick={showMoreItems}>
+          <i class="fa-solid fa-arrow-down"></i> Show more
+        </button>
+        {/* <button
+          onClick={() => {
+            console.log(data);
+            console.log(data.sort((a, b) => b.id - a.id));
+            console.log(listOfPosts);
+            // {listOfPosts
+            //   // .sort(function (a, b) {
+            //   //   return b.id - a.id;
+          }}
+        >
+          show filteredList
+        </button> */}
       </div>
     </div>
   );

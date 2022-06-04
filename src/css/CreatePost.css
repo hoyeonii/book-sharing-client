@@ -91,7 +91,12 @@
   padding-top: 5px;
   width: 100%;
 }
-
+.CP-result-showMoreBtn {
+  position: absolute;
+  margin-top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .CP-submit {
   display: flex;
   justify-content: space-between;
