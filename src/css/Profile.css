@@ -95,6 +95,9 @@
   width: 100%;
   height: 140px;
 }
+.P-book-img > img {
+  box-shadow: 2px 2px 7px;
+}
 
 .P-book .likingButton {
   position: static;

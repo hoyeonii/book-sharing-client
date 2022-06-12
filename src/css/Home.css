@@ -214,6 +214,7 @@
 .H-about-text1 {
   display: flex;
   margin: 15% 0;
+
   position: relative;
 }
 .H-about-text1 div {

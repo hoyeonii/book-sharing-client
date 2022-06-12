@@ -194,9 +194,11 @@ function Home() {
               </div>
             );
           })}
-        <button className="CP-result-showMoreBtn" onClick={showMoreItems}>
-          <i class="fa-solid fa-arrow-down"></i> Show more
-        </button>
+        {filteredData.length != listOfPosts.length && (
+          <button className="CP-result-showMoreBtn" onClick={showMoreItems}>
+            <i class="fa-solid fa-arrow-down"></i> Show more
+          </button>
+        )}
         {/* <button
           onClick={() => {
             console.log(data);

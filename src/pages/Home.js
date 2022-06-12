@@ -145,13 +145,13 @@ function Home() {
               }}
               transition={{ duration: 0.7 }}
             >
-              <span>1</span>
-              <img src={how1} alt="how1" style={{ width: "30%" }} />
-              <div>
-                {/* <span>1</span> */}
-                {/* 내가 소장하고 있는 책을 <strong>등록</strong>해주세요 */}
-                {t(`how1`)}
-              </div>
+              <span>01</span>
+              <img
+                src={how1}
+                alt="how1"
+                style={{ width: "25%", maxWidth: "250px" }}
+              />
+              <div>{t(`how1`)}</div>
               <div className="H-circle-left" />
             </motion.div>
             <motion.div
@@ -163,12 +163,13 @@ function Home() {
               }}
               transition={{ duration: 0.7 }}
             >
-              <span className="H-about-text1-2">2</span>
-              <div>
-                {/* <strong>책 구경하기</strong>에서 읽고 싶은 책을 찾아보세요 */}
-                {t("how2")}
-              </div>
-              <img src={how2} alt="how2" style={{ width: "32%" }}></img>
+              <span className="H-about-text1-2">02</span>
+              <div>{t("how2")}</div>
+              <img
+                src={how2}
+                alt="how2"
+                style={{ width: "28%", maxWidth: "280px" }}
+              ></img>
               <div className="H-circle-right" />
             </motion.div>
             <motion.div
@@ -180,12 +181,13 @@ function Home() {
               }}
               transition={{ duration: 0.7 }}
             >
-              <span>3</span>
-              <img src={how3} alt="how3" style={{ width: "50%" }} />
-              <div>
-                {/* 책 주인에게 <strong>메시지</strong>를 보내 책을 바꿔 읽어보세요! */}
-                {t("how3")}
-              </div>
+              <span>03</span>
+              <img
+                src={how3}
+                alt="how3"
+                style={{ width: "40%", maxWidth: "400px" }}
+              />
+              <div>{t("how3")}</div>
               <div className="H-circle-left" />
             </motion.div>
           </div>

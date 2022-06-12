@@ -1,10 +1,11 @@
 .Chatroom {
   display: flex;
   justify-content: space-around;
-  /* background-color: var(--main-lighter); */
+  background-color: var(--main-lighter);
 }
 .Chat {
   width: 80%;
+  /* background-color: var(--main-lighter); */
 }
 
 .Chat h3 {
@@ -54,14 +55,14 @@
 }
 .Chat-message-me {
   /* div 안의 div가 맨 오른쪽에 정렬되도록 */
-  box-shadow: 2px 2px 2px gray;
+  box-shadow: 1px 1px 1px gray;
   margin-left: auto;
   background-color: var(--gray-light);
   border-radius: 20px 20px 0px 20px;
 }
 .Chat-message-otherside {
   /* border: 1px solid saddlebrown; */
-  box-shadow: 2px 2px 2px gray;
+  box-shadow: 1px 1px 1px gray;
   background-color: var(--main-stress);
   color: white;
   border-radius: 20px 20px 20px 0px;
@@ -83,7 +84,7 @@
 .Chat input {
   padding: 10px 15px;
   width: 70%;
-  margin: 1% 1%;
+  margin: 1%;
   outline: none;
   border-radius: 50px;
   border: none;
@@ -109,7 +110,10 @@
   .Chat-message-me,
   .Chat-message-otherside {
     font-size: 15px;
+    width: 70%;
+    padding: 2% 3%;
   }
+
   .Chat-message-byDate {
     width: 30%;
   }

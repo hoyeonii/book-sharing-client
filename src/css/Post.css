@@ -51,7 +51,7 @@
 .PP-info-detail-rest-index {
   padding: 0;
   margin: 0;
-  margin-right: 10px;
+  margin-right: 5%;
   list-style: none;
   /* text-align: right; */
   line-height: 20px;
@@ -59,7 +59,7 @@
 .PP-info-detail-rest-index li {
   width: 70px;
   font-weight: 600;
-  text-align: right;
+  /* text-align: right; */
 }
 
 .PP-info-detail-rest-text {
