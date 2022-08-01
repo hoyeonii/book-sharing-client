@@ -70,6 +70,21 @@ header > div {
 .header-l-logo {
   width: 200px;
 }
+
+#cartNum {
+  /* position: absolute;
+  top: 0;
+  right: 0; */
+  display: inline-block;
+  margin-left: 2px;
+  padding: 1px;
+  width: 15px;
+  height: 15px;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  background-color: var(--main-stress);
+  color: white;
+}
 .header-burger {
   display: none;
   color: var(--main-stress);
@@ -77,6 +92,7 @@ header > div {
 header a,
 .App-sidenav a {
   /* //Link안에 있는 text 배치할때 */
+  position: relative;
   text-decoration: none;
   align-self: flex-end;
   font-weight: 600;
@@ -111,7 +127,7 @@ button {
   padding-top: 10px;
   padding-right: 20px;
   /* border: 1px solid rebeccapurple; */
-  width: 30%;
+  width: 40%;
   min-width: 300px;
   height: 30px;
   display: flex;

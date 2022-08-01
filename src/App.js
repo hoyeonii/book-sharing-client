@@ -9,6 +9,7 @@ import Book from "./pages/Book.js";
 import PageNotFound from "./pages/PageNotFound.js";
 import Profile from "./pages/Profile.js";
 import Message from "./pages/Message.js";
+import Cart from "./pages/Cart.js";
 import Chatroom from "./pages/Chatroom.js";
 import { AuthContext } from "./helpers/AuthContext";
 import { LanguageContext } from "./helpers/LanguageContext";
@@ -19,13 +20,14 @@ import i18n from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
 import logo from "./Images/anbda_logo.png";
 import { Suspense } from "react";
-
+import { useSelector } from "react-redux";
 const translationsEng = {
   //Nav
 
   books: "Books",
   upload: "Upload",
   message: "Message",
+  cart: "Cart",
   logout: "Log out",
   mypage: "My account",
   login: "Log in",
@@ -98,6 +100,7 @@ const translationsKor = {
   books: "책 구경하기",
   upload: "책 등록하기",
   message: "메세지",
+  cart: "카트",
   logout: "로그아웃",
   mypage: "마이 페이지",
   login: "로그인",
@@ -182,6 +185,7 @@ function App() {
   }); //로그인 상태 처음에는 false
   const [language, setLanguage] = useState("eng");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const cartArr = useSelector((state) => state);
   // let navigate = useNavigate();
 
   useEffect(() => {
@@ -259,6 +263,7 @@ function App() {
                 <>
                   <Link to={`/profile/${authState.id}`}>{t("mypage")}</Link>
                   <Link to={`/message`}>{t("message")}</Link>
+                  <Link to={`/cart`}>{t("cart")}</Link>
                   <Link to="/" onClick={logout}>
                     {t("logout")}
                   </Link>
@@ -308,6 +313,10 @@ function App() {
                           {t("mypage")}
                         </Link>
                         <Link to={`/message`}>{t("message")}</Link>
+                        <Link to={`/cart`}>
+                          {t("cart")}
+                          <div id="cartNum">{cartArr.length}</div>
+                        </Link>
                         <Link to="/" onClick={logout}>
                           {t("logout")}
                         </Link>
@@ -342,6 +351,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/message" element={<Message />} />
                 <Route path="/message/:id" element={<Chatroom />} />
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/profile/:id" element={<Profile />} />
                 {/* <Route path="/book" element={<Search />} /> */}
                 <Route path="*" element={<PageNotFound />} />

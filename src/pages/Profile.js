@@ -12,12 +12,14 @@ import Available from "../helpers/Available";
 import { AuthContext } from "../helpers/AuthContext";
 import { LanguageContext } from "../helpers/LanguageContext";
 import ScrollTopBtn from "../helpers/ScrollTopBtn";
-
+import { useDispatch } from "react-redux";
+import { addCart } from "../helpers/actions";
 import uploadBook from "../Images/uploadBook.png";
 import { useTranslation } from "react-i18next";
 
 function Profile() {
   let { id } = useParams(); // 프로필이 보여질 유저의 id
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState("");
   const [userPosts, setUserPosts] = useState([]);
   const [followers, setfollowers] = useState([]);
@@ -103,19 +105,6 @@ function Profile() {
           alert(`Log in to leave comment`);
           navigate("/login");
         }
-
-        // if (response.data.error) {
-        //   console.log(response.data.error);
-        // } else {
-
-        //   const commentToAdd = {
-        //     commentBody: response.data.commentBody,
-        //     username: response.data.username,
-        //     id: response.data.id,
-        //   };
-        //   setComments([...comments, commentToAdd]);
-        //   setNewComment("");
-        //   }
       });
   };
   const handleLocationSave = () => {
@@ -238,7 +227,6 @@ function Profile() {
                 class="fa-solid fa-location-dot"
                 style={{ color: "var(--main-stress)", paddingRight: "5px" }}
               ></i>
-              {/* {"location : "} */}
               {location ? location : "-"}
             </div>
           </div>
@@ -399,15 +387,9 @@ function Profile() {
                 </div>
 
                 <Available available={post.Post.available} />
-                {/* {post.available == 0 ? "true" : "false"}
-                  <Liking postId={post.Post.id} />
-                  <button
-                    onClick={() => {
-                      console.log(likedPosts);
-                    }}
-                  >
-                    likedpost
-                  </button> */}
+                <button onClick={() => dispatch(addCart(post))}>
+                  장바구니로
+                </button>
               </div>
             ))}
           {/* <button
