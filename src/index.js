@@ -14,13 +14,9 @@ function reducer(state = initialState, action) {
       } else {
         return state;
       }
-
     case "DELETE_ITEM":
-      console.log("siqrqff");
-
       return state.filter((el) => el !== action.payload);
     case "DELETE_ALL":
-      console.log("sif");
       return initialState;
     default:
       return state;
