@@ -58,8 +58,7 @@ function Chatroom() {
           headers: { accessToken: localStorage.getItem("accessToken") },
         }
       )
-      .then((response) => {
-        // navigate(`/book`);
+      .then(() => {
         setReload(!reload);
       });
   };

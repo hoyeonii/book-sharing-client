@@ -26,23 +26,17 @@ function Message({ reload, setReload }) {
         );
         setChatroom([...new Set(raw)]);
         setChats(res.data.sort((a, b) => b.id - a.id));
-        // console.log(res.data.sort((a, b) => b.id - a.id));
       });
 
     axios.get(`https://anbda.herokuapp.com/auth/login`).then((res) => {
       setUserList(res.data);
-      // console.log(res.data.sort((a, b) => b.id - a.id));
     });
     console.log(reload);
   }, [reload]);
 
-  // const onclick = () => {
-  //   scrollDown();
-  // };
   return (
     <div className="Message">
       <h3>Messages</h3>
-
       <div className="M-rooms">
         {chatroom &&
           chatroom.map((el) => (

@@ -387,9 +387,11 @@ function Profile() {
                 </div>
 
                 <Available available={post.Post.available} />
-                <button onClick={() => dispatch(addCart(post))}>
-                  장바구니로
-                </button>
+                {post.Post.available && (
+                  <button onClick={() => dispatch(addCart(post))}>
+                    장바구니로
+                  </button>
+                )}
               </div>
             ))}
           {/* <button
