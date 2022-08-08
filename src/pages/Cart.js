@@ -3,11 +3,13 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCart, deleteAll } from "../helpers/actions";
 import { AuthContext } from "../helpers/AuthContext";
-
+import { initReactI18next, useTranslation } from "react-i18next";
 function Cart() {
   const { authState } = useContext(AuthContext);
   const cartArr = useSelector((state) => state);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+  console.log(cartArr);
 
   const sendMessage = () => {
     console.log("yss");
@@ -20,8 +22,7 @@ function Cart() {
           {
             send: authState.id,
             receive: el.UserId,
-            // text: `안녕하세요 ${el.Post.title}에 관심있어요 저랑 책 바꾸실래요?`,
-            text: "test1",
+            text: `안녕하세요 ${el.Post.title}에 관심있어요 저랑 책 바꾸실래요?`,
             read: false,
             createdAt: date,
           },
@@ -32,21 +33,36 @@ function Cart() {
         .then((res) => {
           console.log(res);
         })
+        .catch((err) => console.log(err))
     );
+    alert("Message Successfully sent!");
   };
 
   return (
     <div>
-      Cart
+      <h3>{t("cart")}</h3>
+      <span>{t("cartTip")}</span>
       {cartArr.map((el) => (
-        <div>
-          {el.Post.title}
+        <div className="CP-result">
+          <div className="CP-result-img-container">
+            <img className="CP-result-img" src={el.Post.image} alt="no image" />
+          </div>
+          <div className="CP-result-info">
+            <div className="CP-result-info-title">{el.Post.title}</div>
+            <br />
+            {t("by")} : {el.Post.author}
+            <br />
+            {t("publisher")} : {el.Post.publisher}
+            <br />
+            ISBN : {el.Post.isbn}
+          </div>
           <button
+            className="CP-result-deleteBtn"
             onClick={() => {
               dispatch(deleteCart(el));
             }}
           >
-            삭제
+            X
           </button>
         </div>
       ))}

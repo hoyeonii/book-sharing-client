@@ -94,6 +94,10 @@ const translationsEng = {
   by: "by",
   step2: "Select the genre of the book and press `Upload`",
   searchAgain: "Search again",
+
+  //cart
+  cart: "Cart",
+  cartTip: "You can send an exchange request at once.",
 };
 const translationsKor = {
   //Nav
@@ -165,6 +169,10 @@ const translationsKor = {
   by: "글쓴이",
   step2: "장르 선택 후, '등록하기' 버튼을 눌러주세요",
   searchAgain: "다시 검색하기",
+
+  //cart
+  cart: "장바구니",
+  cartTip: "책 교환 요청을 한꺼번에 보낼 수 있어요.",
 };
 i18n.use(initReactI18next).init({
   resources: {

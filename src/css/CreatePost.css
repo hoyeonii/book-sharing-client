@@ -97,6 +97,10 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.CP-result-deleteBtn {
+  position: absolute;
+  right: 3%;
+}
 .CP-submit {
   display: flex;
   justify-content: space-between;
