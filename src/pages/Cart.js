@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCart, deleteAll } from "../helpers/actions";
 import { AuthContext } from "../helpers/AuthContext";
-import { initReactI18next, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 function Cart() {
   const { authState } = useContext(AuthContext);
   const cartArr = useSelector((state) => state);
