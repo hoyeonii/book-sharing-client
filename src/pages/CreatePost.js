@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../css/CreatePost.css";
 import { AuthContext } from "../helpers/AuthContext";
 import Loading from "../helpers/Loading";
-import { initReactI18next, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 function CreatePost() {
   const [search, setSearch] = useState("");
@@ -20,21 +20,9 @@ function CreatePost() {
   const [loading, setLoading] = useState("notyet");
   const { authState } = useContext(AuthContext);
   const { t } = useTranslation();
-
   let navigate = useNavigate();
 
-  const handleSearch = () => {
-    // axios
-    //   // .get("http://localhost:3002/search/book?query=" + search)
-    //   .get("https://anbda.herokuapp.com/search/book?query=" + search)
-    //   .then((res) => {
-    //     setLoading(false);
-
-    //     setResult(res.data.items);
-    //   });
-
-    // "https://openapi.naver.com/v1/search/book?query="
-    // "proxy": "https://openapi.naver.com",
+  function handleSearch() {
     axios
       .get("/api" + "/v1/search/book.json", {
         params: { query: search, display: 10 },
@@ -45,15 +33,12 @@ function CreatePost() {
         },
       })
       .then((res) => {
-        // 실제 API를 요청한다/
         setLoading(false);
-
         setResult(res.data.items);
-        console.log(res);
       });
-  };
+  }
 
-  const onSubmit = (data) => {
+  function onSubmit() {
     axios
       .post(
         "https://anbda.herokuapp.com/posts",
@@ -72,10 +57,20 @@ function CreatePost() {
         }
       )
       .then((response) => {
-        navigate(`/book`);
+        navigate(`/books`);
         console.log(response);
       });
-  };
+  }
+
+  function removeTags(text) {
+    return text
+      .replaceAll("&#x0D;", "")
+      .replaceAll("<b>", "")
+      .replaceAll("</b>", "")
+      .replaceAll("&lt;", "")
+      .replaceAll("&gt;", "")
+      .replaceAll("^", "/");
+  }
 
   return (
     <div className="createPostPage">
@@ -126,26 +121,29 @@ function CreatePost() {
                     className="CP-result"
                     onClick={() => {
                       setTitle(
-                        item.title.replaceAll("<b>", "").replaceAll("</b>", "")
+                        removeTags(item.title)
+                        // .replaceAll("<b>", "").replaceAll("</b>", "")
                       );
                       setDescription(
-                        item.description
-                          .replaceAll("&#x0D;", "")
-                          .replaceAll("<b>", "")
-                          .replaceAll("</b>", "")
-                          .replaceAll("&lt;", "")
-                          .replaceAll("&gt;", "")
+                        removeTags(item.description)
+                        // .replaceAll("&#x0D;", "")
+                        // .replaceAll("<b>", "")
+                        // .replaceAll("</b>", "")
+                        // .replaceAll("&lt;", "")
+                        // .replaceAll("&gt;", "")
                       );
                       setAuthor(
-                        item.author.replaceAll("<b>", "").replaceAll("</b>", "")
+                        removeTags(item.author)
+                        // .replaceAll("<b>", "").replaceAll("</b>", "")
                       );
                       setPublisher(
-                        item.publisher
-                          .replaceAll("<b>", "")
-                          .replaceAll("</b>", "")
+                        removeTags(item.publisher)
+                        // .replaceAll("<b>", "")
+                        // .replaceAll("</b>", "")
                       );
                       setIsbn(
-                        item.isbn.replaceAll("<b>", "").replaceAll("</b>", "")
+                        removeTags(item.isbn)
+                        // .replaceAll("<b>", "").replaceAll("</b>", "")
                       );
                       setImage(item.image);
                       window.scrollTo(0, document.body.scrollHeight + 100);
@@ -156,7 +154,7 @@ function CreatePost() {
                         <img
                           className="CP-result-img"
                           src={item.image}
-                          alt="no image"
+                          alt="selectedImg"
                         />
                       </div>
                     ) : (
@@ -164,29 +162,37 @@ function CreatePost() {
                     )}
                     <div className="CP-result-info">
                       <div className="CP-result-info-title">
-                        {item.title
-                          .replaceAll("<b>", "")
-                          .replaceAll("</b>", "")}
+                        {
+                          removeTags(item.title)
+                          // .replaceAll("<b>", "")
+                          // .replaceAll("</b>", "")
+                        }
                       </div>
                       <br />
                       {t("by")} :{" "}
-                      {item.author.replaceAll("<b>", "").replaceAll("</b>", "")}
+                      {
+                        removeTags(item.author)
+                        // .replaceAll("<b>", "").replaceAll("</b>", "")
+                      }
                       <br />
                       {t("publisher")} :{" "}
-                      {item.publisher
-                        .replaceAll("<b>", "")
-                        .replaceAll("</b>", "")}
+                      {
+                        removeTags(item.publisher)
+                        // .replaceAll("<b>", "")
+                        // .replaceAll("</b>", "")
+                      }
                       <br />
                       ISBN :{" "}
-                      {item.isbn.replaceAll("<b>", "").replaceAll("</b>", "")}
+                      {
+                        removeTags(item.isbn)
+                        // .replaceAll("<b>", "").replaceAll("</b>", "")
+                      }
                     </div>
                   </div>
                 );
               })
             )}
           </div>
-          {/* {result &&
-          } */}
         </div>
       )}
 

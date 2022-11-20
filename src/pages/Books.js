@@ -6,7 +6,7 @@ import Liking from "../helpers/Liking";
 import "../css/Book.css";
 import Available from "../helpers/Available";
 import ScrollTopBtn from "../helpers/ScrollTopBtn";
-import { initReactI18next, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 function Home() {
   const [data, setData] = useState([]);
@@ -20,6 +20,14 @@ function Home() {
 
   let navigate = useNavigate();
   useEffect(() => {
+    loadPosts();
+  }, []);
+
+  useEffect(() => {
+    applyFilter();
+  }, [filter, onlyAvail]);
+
+  function loadPosts() {
     axios
       .get("https://anbda.herokuapp.com/posts")
       .then((res) => {
@@ -30,9 +38,9 @@ function Home() {
         setFilteredData(res);
         setListOfPosts(res.slice(0, 5));
       });
-  }, []);
+  }
 
-  useEffect(() => {
+  function applyFilter() {
     let copiedList = [...data];
     if (filter !== "전체") {
       copiedList = copiedList.filter((el) => el.genres === filter);
@@ -40,16 +48,13 @@ function Home() {
     if (onlyAvail == true) {
       copiedList = copiedList.filter((el) => el.available == 1);
     }
-    console.log(copiedList);
     setFilteredData(copiedList);
     setListOfPosts(copiedList.slice(0, 5));
-  }, [filter, onlyAvail]);
+  }
 
-  const showMoreItems = () => {
-    console.log(data);
-    console.log(data.slice(0, listOfPosts.length + 5));
+  function showMoreItems() {
     setListOfPosts(filteredData.slice(0, listOfPosts.length + 5));
-  };
+  }
 
   const handleCategorybtn = (val) => {
     setListOfPosts([]);
@@ -127,7 +132,6 @@ function Home() {
           }}
         ></i>
         <label>{listOfPosts.length + " results"}</label>
-        {/* {filter + ` > ` + listOfPosts.length + " results"} */}
         <div
           className="B-category-small"
           style={{ display: `${genresOpen ? "block" : "none"}` }}
@@ -157,60 +161,43 @@ function Home() {
             <label>{t("onlyAvailable")}</label>
           </div>
         </div>
-        {listOfPosts
-          // .sort(function (a, b) {
-          //   return b.id - a.id;
-          // })
-          .map((val, key) => {
-            return (
-              <div style={{ display: `${genresOpen ? "none" : "block"}` }}>
-                <div
-                  className="CP-result"
-                  key={key}
-                  onClick={() => {
-                    navigate(`/post/${val.id}`);
-                  }}
-                  // style={{ display: `${genresOpen ? "none" : "inline-block"}` }}
-                >
-                  <Liking postId={val.id} />
-                  <div className="CP-result-img-container">
-                    <img
-                      className="CP-result-img"
-                      src={val.image}
-                      alt="no image"
-                    />
-                  </div>
-                  <div className="CP-result-info">
-                    <Available available={val.available} />
-                    <div className="CP-result-info-title">{val.title}</div>
-                    <br />
-                    글쓴이 : {val.author}
-                    <br />
-                    출판사 : {val.publisher}
-                    <br />
-                    ISBN : {val.isbn}
-                  </div>
+        {listOfPosts.map((val, key) => {
+          return (
+            <div style={{ display: `${genresOpen ? "none" : "block"}` }}>
+              <div
+                className="CP-result"
+                key={key}
+                onClick={() => {
+                  navigate(`/post/${val.id}`);
+                }}
+              >
+                <Liking postId={val.id} />
+                <div className="CP-result-img-container">
+                  <img
+                    className="CP-result-img"
+                    src={val.image}
+                    alt="no image"
+                  />
+                </div>
+                <div className="CP-result-info">
+                  <Available available={val.available} />
+                  <div className="CP-result-info-title">{val.title}</div>
+                  <br />
+                  글쓴이 : {val.author}
+                  <br />
+                  출판사 : {val.publisher}
+                  <br />
+                  ISBN : {val.isbn}
                 </div>
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
         {filteredData.length != listOfPosts.length && (
           <button className="CP-result-showMoreBtn" onClick={showMoreItems}>
             <i class="fa-solid fa-arrow-down"></i> Show more
           </button>
         )}
-        {/* <button
-          onClick={() => {
-            console.log(data);
-            console.log(data.sort((a, b) => b.id - a.id));
-            console.log(listOfPosts);
-            // {listOfPosts
-            //   // .sort(function (a, b) {
-            //   //   return b.id - a.id;
-          }}
-        >
-          show filteredList
-        </button> */}
       </div>
     </div>
   );

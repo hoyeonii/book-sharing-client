@@ -10,7 +10,7 @@ function Login() {
   const { setAuthState } = useContext(AuthContext);
   let navigate = useNavigate();
 
-  const login = () => {
+  function login() {
     const data = { username: username, password: password };
     const defaultData = { ...data, level: "-", field: "-" };
     axios
@@ -29,7 +29,7 @@ function Login() {
         }
       })
       .then(navigate(`/`));
-  };
+  }
   return (
     <div className="login">
       <h1>Log in</h1>

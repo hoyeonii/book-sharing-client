@@ -52,7 +52,12 @@
   transform: translateY(-50%);
 }
 .P-info-right {
+  display: flex;
   text-align: right;
+  flex-direction: column;
+}
+.P-info-right button {
+  margin-bottom: 5px;
 }
 .P-buttons {
   border-bottom: 1px solid black;

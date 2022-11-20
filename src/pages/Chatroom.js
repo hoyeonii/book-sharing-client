@@ -3,9 +3,9 @@ import React, { useEffect, useContext, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../helpers/AuthContext";
 import { useNavigate } from "react-router-dom";
-
 import "../css/Chatroom.css";
 import Message from "./Message";
+
 function Chatroom() {
   let { id } = useParams();
   const { authState } = useContext(AuthContext);
@@ -19,31 +19,40 @@ function Chatroom() {
   let navigate = useNavigate();
 
   useEffect(() => {
+    loadUserNMessage();
+  }, [reload]);
+
+  function loadUserNMessage() {
     axios
       .get(`https://anbda.herokuapp.com/message/${authState.id}`)
       .then((res) => {
-        setMessage(res.data.filter((el) => el.send == id || el.receive == id));
+        setMessage(
+          res.data
+            .filter((el) => el.send == id || el.receive == id)
+            .filter((el, i) => {
+              let index;
+              res.data.find((compare, compareIndex) => {
+                if (compare.id === el.id) {
+                  index = compareIndex;
+                }
+              });
+              return index === i;
+            })
+        );
         scrollDown();
         console.log(res.data);
         return res.data.filter((el) => el.send == id || el.receive == id);
       });
-    // .then((res) =>
-    //   res
-    //     .filter((el) => el.read === false)
-    //     .forEach((el) => {
-    //       console.log(el.text);
-    //       handleUpdateRead(el.id);
-    //     })
-    // );
+
     axios.get(`https://anbda.herokuapp.com/auth/login`).then((res) => {
       setUserList(res.data);
-      // console.log(res.data.sort((a, b) => b.id - a.id));
     });
-  }, [reload]);
+  }
 
-  const handleSubmit = () => {
+  function handleSubmit() {
+    console.log("문자보내기");
     let date = new Date();
-    date = date.setHours(date.getHours() + 2);
+    date = date.setHours(date.getHours() + 9); //그리니치와 한국시간차
     axios
       .post(
         "https://anbda.herokuapp.com/message",
@@ -61,21 +70,21 @@ function Chatroom() {
       .then(() => {
         setReload(!reload);
       });
-  };
+  }
 
-  const scrollDown = () => {
+  function scrollDown() {
     chatbox.current.scrollIntoView({ behavior: "smooth" });
-  };
+  }
 
-  const SortbyDate = ({ createdAt }) => {
+  function SortbyDate({ createdAt }) {
     return dateStamp === createdAt ? (
       <div></div>
     ) : (
       <div className="Chat-message-byDate">{createdAt}</div>
     );
-  };
+  }
 
-  const ShowTimeStamp = (date) => {
+  function ShowTimeStamp(date) {
     let timeStamp = date.date.split("T");
     dateStamp = timeStamp[0];
 
@@ -84,19 +93,18 @@ function Chatroom() {
         {timeStamp[1].slice(0, 5)}
       </div>
     );
-  };
+  }
 
-  const handleMessageDelete = (messageId) => {
+  function handleMessageDelete(messageId) {
     axios
       .delete(`https://anbda.herokuapp.com/message/${messageId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {
         alert("message deleted!");
-        // navigate(`/message/${id}`);
         setReload(!reload);
       });
-  };
+  }
 
   // const handleUpdateRead = (messageId) => {
   //   axios
@@ -141,19 +149,10 @@ function Chatroom() {
             view profile
           </button>
         </h3>
-
-        {/* <button
-        onClick={() => {
-          console.log(message);
-        }}
-      >
-        clike to see message
-      </button> */}
         <div className="Chat-messages">
           {message.map((el, i) => (
             <div className="Chat-message">
               <SortbyDate createdAt={el.createdAt.split("T")[0]} />
-
               <div
                 key={i}
                 className={
@@ -163,7 +162,6 @@ function Chatroom() {
                 }
               >
                 {el.text}
-
                 <ShowTimeStamp date={el.createdAt} />
                 {el.send == authState.id && (
                   <button

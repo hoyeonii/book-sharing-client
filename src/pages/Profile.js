@@ -38,29 +38,11 @@ function Profile() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    console.log(language);
-    // axios.get(`http://localhost:3001/auth/basicinfo/${id}`).then((res) => {
-
-    //   setUserData(res.data);
-    //   console.log(res.data);
-    // });
     loadUserData();
-    // axios.get(`http://localhost:3001/posts/byuserId/${id}`).then((res) => {
-    //   setUserPosts(res.data);
-    // });
-    axios
-      .get(`https://anbda.herokuapp.com/follow/byfollowedId/${id}`)
-      .then((res) => {
-        setfollowers(res.data);
-      });
-    axios
-      .get(`https://anbda.herokuapp.com/follow/byfollowerId/${id}`)
-      .then((res) => {
-        setfollowing(res.data);
-      });
-
     loadPost();
-  }, [id]);
+    loadFollowInfo();
+    // 팔로우기능;
+  }, []);
 
   const loadUserData = () => {
     axios
@@ -86,6 +68,24 @@ function Profile() {
       });
     console.log("loaded");
   };
+
+  function loadFollowInfo() {
+    axios
+      .get(`https://anbda.herokuapp.com/follow/byfollowedId/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setfollowers(res.data);
+      })
+      .then(() => {
+        console.log(followers.find((el) => el.follower));
+        console.log(authState.id);
+      });
+    axios
+      .get(`https://anbda.herokuapp.com/follow/byfollowerId/${id}`)
+      .then((res) => {
+        setfollowing(res.data);
+      });
+  }
 
   const follow = () => {
     axios
@@ -258,15 +258,19 @@ function Profile() {
               {t("message")}
             </button>
           )}
+          {authState.id !== userData.id && (
+            <button onClick={follow}>
+              {followers.find((el) => Number(el.follower) === authState.id)
+                ? "UnFollow"
+                : "Follow"}
+            </button>
+          )}
+          <div>followed by.. {followers.length} ppl</div>
+          {/* <div>following.. {following.length}</div>
+          <div>id: {following.map((el) => el.followed).join(", ")}</div> */}
         </div>
       </div>
-      {/* <button onClick={follow}>Follow</button> */}
-      {/* <div>followed by.... {followers.length} ppl</div>
-      <div>id: {followers.map((el) => el.follower).join(", ")}</div>
-      <div>following.... {following.length}</div>
-      <div>id: {following.map((el) => el.followed).join(", ")}</div>
-      <div>--------------------</div>
-      {toggle ? "true" : "false"} */}
+
       <div className="P-buttons">
         <div
           onClick={() => {
@@ -323,7 +327,6 @@ function Profile() {
               <div
                 key={i}
                 className="P-book"
-                // style={{ cursor: "default" }}
                 onClick={() => {
                   navigate(`/post/${post.id}`);
                   console.log(post.id);
@@ -394,13 +397,6 @@ function Profile() {
                 )}
               </div>
             ))}
-          {/* <button
-            onClick={() => {
-              console.log(likedPosts);
-            }}
-          >
-            likedpost
-          </button> */}
         </div>
       )}
     </div>

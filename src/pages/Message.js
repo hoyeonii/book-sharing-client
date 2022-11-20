@@ -10,6 +10,7 @@ function Message({ reload, setReload }) {
   const [chatroom, setChatroom] = useState([]);
   const [userList, setUserList] = useState([]);
   const [chats, setChats] = useState([]);
+
   let newDate = new Date();
   let today = [
     String(newDate.getFullYear()),
@@ -51,13 +52,6 @@ function Message({ reload, setReload }) {
                 {userList.find((user) => user.id == el) &&
                   userList.find((user) => user.id == el).name}
               </strong>
-              {/* <button
-                onClick={() => {
-                  console.log(userList.find((user) => user.id == el).username);
-                }}
-              >
-                userList?
-              </button> */}
               {chats[0] && (
                 <div className="M-rooms-lastchat">
                   {
@@ -81,16 +75,6 @@ function Message({ reload, setReload }) {
                         .slice(0, 5)}
                 </div>
               )}
-              {/* <button
-                onClick={() => {
-                  console.log(
-                    chats.find((chat) => chat.send == el || chat.receive == el)
-                      .text
-                  );
-                }}
-              >
-                click me
-              </button> */}
             </div>
           ))}
       </div>

@@ -2,13 +2,11 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import CreatePost from "../pages/CreatePost.js";
 import { useNavigate } from "react-router-dom";
 import "../css/Post.css";
 import Liking from "../helpers/Liking";
 import Available from "../helpers/Available";
-import { initReactI18next, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,8 +14,8 @@ function Post() {
   let { id } = useParams();
   const [bookId, setBookId] = useState(id);
   const [bookInfo, setBookInfo] = useState({});
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
+  // const [comments, setComments] = useState([]);
+  // const [newComment, setNewComment] = useState("");
   const [userPosts, setUserPosts] = useState([]);
   const [userName, setUserName] = useState("");
   const { t } = useTranslation();
@@ -25,6 +23,7 @@ function Post() {
   const { authState } = useContext(AuthContext);
   let navigate = useNavigate();
   const carousel = useRef();
+
   useEffect(() => {
     let isMounted = true;
     axios
@@ -37,6 +36,7 @@ function Post() {
       isMounted = false;
     };
   }, [bookId]);
+
   useEffect(() => {
     axios
       .get(`https://anbda.herokuapp.com/posts/byuserId/${bookInfo.UserId}`)
@@ -46,77 +46,71 @@ function Post() {
     axios
       .get(`https://anbda.herokuapp.com/auth/basicinfo/${bookInfo.UserId}`)
       .then((res) => {
+        console.log(res.data);
         setUserName(res.data.name);
       });
   }, [bookInfo]);
 
-  const addComment = () => {
-    axios
-      .post(
-        "https://anbda.herokuapp.com/comments",
-        {
-          commentBody: newComment,
-          PostId: id,
-        },
-        {
-          headers: {
-            accessToken: localStorage.getItem("accessToken"),
-          },
-        }
-      )
-      .then((response) => {
-        if (localStorage.getItem("accessToken") == null) {
-          // alert(`Log in to leave comment`);
-          toast("Log in to leave comment", { type: "error" });
-          navigate("/login");
-        }
+  // function addComment() {
+  //   axios
+  //     .post(
+  //       "https://anbda.herokuapp.com/comments",
+  //       {
+  //         commentBody: newComment,
+  //         PostId: id,
+  //       },
+  //       {
+  //         headers: {
+  //           accessToken: localStorage.getItem("accessToken"),
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       if (localStorage.getItem("accessToken") == null) {
+  //         // alert(`Log in to leave comment`);
+  //         toast("Log in to leave comment", { type: "error" });
+  //         navigate("/login");
+  //       }
+  //       console.log(response.data);
+  //       console.log("username??");
+  //       if (response.data.error) {
+  //         console.log(response.data.error);
+  //       } else {
+  //         const commentToAdd = {
+  //           commentBody: response.data.commentBody,
+  //           username: response.data.username,
+  //           id: response.data.id,
+  //         };
+  //         setComments([...comments, commentToAdd]);
+  //         setNewComment("");
+  //       }
+  //     });
+  // }
 
-        if (response.data.error) {
-          console.log(response.data.error);
-        } else {
-          const commentToAdd = {
-            commentBody: response.data.commentBody,
-            username: response.data.username,
-            id: response.data.id,
-          };
-          setComments([...comments, commentToAdd]);
-          setNewComment("");
-        }
-      });
-  };
+  // function deleteComment(id) {
+  //   axios
+  //     .delete(`https://anbda.herokuapp.com/comments/${id}`, {
+  //       headers: { accessToken: localStorage.getItem("accessToken") },
+  //     })
+  //     .then(() => {
+  //       setComments(
+  //         comments.filter((val) => {
+  //           return val.id != id;
+  //         })
+  //       );
+  //     });
+  // }
 
-  const deleteComment = (id) => {
-    axios
-      .delete(`https://anbda.herokuapp.com/comments/${id}`, {
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      })
-      .then(() => {
-        setComments(
-          comments.filter((val) => {
-            return val.id != id;
-          })
-        );
-      });
-  };
-
-  const CreateAPost = () => {
-    navigate("/createpost");
-  };
-
-  const deletePost = () => {
+  function deletePost() {
     axios
       .delete(`https://anbda.herokuapp.com/posts/${id}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {
-        toast("Wow so easy!");
-        // alert("Post deleted!");
-        // toast("Post deleted!", { type: "success" });
-        // toast.warning("dleee");
-
-        navigate("/book");
+        toast("Deleted!");
+        navigate("/books");
       });
-  };
+  }
 
   return (
     <div className="postPage">
@@ -185,6 +179,12 @@ function Post() {
       </section>
 
       {/* <div className="addCommentContainer">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            addComment();
+          }}
+        >
           <input
             type="text"
             placeholder="Comment..."
@@ -194,47 +194,32 @@ function Post() {
               setNewComment(event.target.value);
             }}
           />
-          <button onClick={addComment}> Add Comment</button>
-        </div>
-        <div className="listOfComments">
-          {comments.map((comment, key) => {
-            return (
-              <div key={key} className="comment">
-                {comment.commentBody}
-                <label> Username: {comment.username}</label>
-                {authState.username === comment.username && (
-                  <button
-                    onClick={() => {
-                      deleteComment(comment.id);
-                    }}
-                  >
-                    X
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </div>
-        {authState.id}///
-        {bookInfo.UserId}//
-        {bookInfo.id}
-        {authState.id === bookInfo.UserId && (
-          <button
-            onClick={() => {
-              deletePost();
-            }}
-          >
-            Delete
-          </button>
-        )}
-        <button onClick={CreateAPost}>Create a Post</button>
-        <button
-          onClick={() => {
-            console.log(userPosts, bookInfo, bookInfo.UserId);
-          }}
-        >
-          userpost
-        </button> */}
+          <button type="submit"> Add Comment</button>
+        </form>
+      </div> */}
+
+      {/* <div className="listOfComments">
+        {comments.map((comment, key) => {
+          console.log(comment);
+          return (
+            <div key={key} className="comment">
+              {comment.commentBody}
+              <label> Username: {comment.username}</label>
+              {
+                 authState.username === comment.username &&
+                <button
+                  onClick={() => {
+                    deleteComment(comment.id);
+                  }}
+                >
+                  X
+                </button>
+              }
+            </div>
+          );
+        })}
+      </div> */}
+
       {userPosts.length > 1 && (
         <section className="PP-more">
           <div className="PP-more-header">
@@ -245,11 +230,6 @@ function Post() {
             {userPosts
               .filter((post) => post.id !== bookInfo.id)
               .map((post, i) => (
-                // <div
-                //   key={i}
-                //   className="PP-more-book"
-                //   style={{ cursor: "default" }}
-                // >
                 <div
                   className="PP-more-books"
                   key={i}
@@ -270,8 +250,6 @@ function Post() {
                     {post.author}
                   </div>
                 </div>
-
-                // </div>
               ))}
           </div>
           <button

@@ -5,7 +5,7 @@ import CreatePost from "./pages/CreatePost.js";
 import Post from "./pages/Post.js";
 import Registration from "./pages/Registration.js";
 import Login from "./pages/Login.js";
-import Book from "./pages/Book.js";
+import Books from "./pages/Books.js";
 import PageNotFound from "./pages/PageNotFound.js";
 import Profile from "./pages/Profile.js";
 import Message from "./pages/Message.js";
@@ -105,7 +105,7 @@ function App() {
               >
                 <img src={logo} alt="logo" className="header-l-logo" />
               </Link>
-              <Link to="/book">{t("books")} </Link>
+              <Link to="/books">{t("books")} </Link>
               <Link to="/createpost">{t("upload")}</Link>{" "}
               {!authState.status ? (
                 <>
@@ -142,7 +142,7 @@ function App() {
                     <Link to="/" className="logo" style={{ display: "block" }}>
                       <img src={logo} alt="logo" className="header-l-logo" />
                     </Link>
-                    <Link to="/book">{t("books")} </Link>
+                    <Link to="/books">{t("books")} </Link>
                     <Link to="/createpost">{t("upload")}</Link>
                   </div>
 
@@ -200,13 +200,12 @@ function App() {
                   element={<Post />}
                 />
                 <Route path="/registration" element={<Registration />} />
-                <Route path="/book" element={<Book />} />
+                <Route path="/books" element={<Books />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/message" element={<Message />} />
                 <Route path="/message/:id" element={<Chatroom />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/profile/:id" element={<Profile />} />
-                {/* <Route path="/book" element={<Search />} /> */}
                 <Route path="*" element={<PageNotFound />} />
               </Routes>
             </LanguageContext.Provider>
