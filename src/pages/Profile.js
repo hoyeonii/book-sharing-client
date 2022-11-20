@@ -2,11 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Form } from "formik";
-import UploadImage from "../helpers/UploadImage";
-import Liking from "../helpers/Liking";
 import "../css/Profile.css";
-import { green } from "@material-ui/core/colors";
 import ToggleButton from "react-toggle-button";
 import Available from "../helpers/Available";
 import { AuthContext } from "../helpers/AuthContext";
@@ -24,7 +20,6 @@ function Profile() {
   const [userPosts, setUserPosts] = useState([]);
   const [followers, setfollowers] = useState([]);
   const [following, setfollowing] = useState([]);
-  const [uploadStatus, setUploadStatus] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
   const [showMyBook, setShowMyBook] = useState(true);
   const [toggle, setToggle] = useState(false);
@@ -32,7 +27,6 @@ function Profile() {
   const [location, setLocation] = useState("");
   const [editMode, setEditMode] = useState(false);
   const { authState } = useContext(AuthContext);
-  const { language } = useContext(LanguageContext);
   const { t } = useTranslation();
 
   let navigate = useNavigate();
@@ -41,10 +35,9 @@ function Profile() {
     loadUserData();
     loadPost();
     loadFollowInfo();
-    // 팔로우기능;
   }, []);
 
-  const loadUserData = () => {
+  function loadUserData() {
     axios
       .get(`https://anbda.herokuapp.com/auth/basicinfo/${id}`)
       .then((res) => {
@@ -53,33 +46,29 @@ function Profile() {
         setLocation(res.data.location);
         console.log(res.data);
       });
-  };
+  }
 
-  const loadPost = () => {
+  function loadPost() {
     axios
       .get(`https://anbda.herokuapp.com/posts/byuserId/${id}`)
       .then((res) => {
         setUserPosts(res.data);
       });
+      
     axios
       .get(`https://anbda.herokuapp.com/likes/likedPosts/${id}`)
       .then((res) => {
         setLikedPosts(res.data);
       });
-    console.log("loaded");
-  };
+  }
 
   function loadFollowInfo() {
     axios
       .get(`https://anbda.herokuapp.com/follow/byfollowedId/${id}`)
       .then((res) => {
-        console.log(res.data);
         setfollowers(res.data);
       })
-      .then(() => {
-        console.log(followers.find((el) => el.follower));
-        console.log(authState.id);
-      });
+
     axios
       .get(`https://anbda.herokuapp.com/follow/byfollowerId/${id}`)
       .then((res) => {
@@ -87,7 +76,7 @@ function Profile() {
       });
   }
 
-  const follow = () => {
+  function handleFollow() {
     axios
       .post(
         "https://anbda.herokuapp.com/follow",
@@ -106,9 +95,9 @@ function Profile() {
           navigate("/login");
         }
       });
-  };
-  const handleLocationSave = () => {
-    console.log(id);
+  }
+
+  function handleEdit() {
     axios
       .put(
         `https://anbda.herokuapp.com/auth/byUserId/${id}`,
@@ -119,8 +108,7 @@ function Profile() {
           },
         }
       )
-      .then((response) => {
-        // console.log(response.data);
+      .then(() => {
         setLocation("");
         window.location.replace("/");
       })
@@ -128,11 +116,9 @@ function Profile() {
         console.log(err);
       });
     alert(`프로필 변경이 완료되었습니다.`);
-    loadUserData();
-  };
+  }
 
-  const handleAvailable = (postId, postAvailable) => {
-    console.log(postId);
+  function handleAvailable(postId, postAvailable) {
     axios
       .put(
         `https://anbda.herokuapp.com/posts/byId/${postId}`,
@@ -147,35 +133,34 @@ function Profile() {
       )
       .then((response) => {
         // console.log(response.data);
+        loadPost();
       })
       .catch((err) => {
         console.log(err);
       });
     alert(`책 대여가능 상태가 바뀌었습니다`);
+  }
 
-    loadPost();
-    // setToggle(!toggle);
-  };
-  const handleUsernameSave = () => {
-    axios
-      .put(
-        `https://anbda.herokuapp.com/auth/changeName/${id}`,
-        {
-          name: username,
-        },
-        {
-          headers: {
-            accessToken: localStorage.getItem("accessToken"),
-          },
-        }
-      )
-      .then((response) => {})
-      .catch((err) => {
-        console.log(err);
-      });
-    alert(``);
-    loadUserData();
-  };
+  // const handleUsernameSave = () => {
+  //   axios
+  //     .put(
+  //       `https://anbda.herokuapp.com/auth/changeName/${id}`,
+  //       {
+  //         name: username,
+  //       },
+  //       {
+  //         headers: {
+  //           accessToken: localStorage.getItem("accessToken"),
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {})
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   alert(``);
+  //   loadUserData();
+  // };
 
   return (
     <div>
@@ -185,13 +170,10 @@ function Profile() {
           <div className="P-info-username">
             <form
               onSubmit={() => {
-                // handleUsernameSave();
-                handleLocationSave();
-
+                handleEdit();
                 setEditMode(false);
               }}
             >
-              {/* <div className="P-info-input"> */}
               {t("id")}
               <input
                 onChange={(e) => {
@@ -211,10 +193,8 @@ function Profile() {
                 style={{ marginLeft: "10px", marginTop: "10px" }}
                 value={location}
               />
-              {/* </div> */}
-              {/* <div className="P-info-savebtn"> */}
+
               <button className="P-info-savebtn">save</button>
-              {/* </div> */}
             </form>
           </div>
         ) : (
@@ -259,7 +239,7 @@ function Profile() {
             </button>
           )}
           {authState.id !== userData.id && (
-            <button onClick={follow}>
+            <button onClick={handleFollow}>
               {followers.find((el) => Number(el.follower) === authState.id)
                 ? "UnFollow"
                 : "Follow"}
@@ -307,7 +287,6 @@ function Profile() {
                 className="P-book"
                 style={{
                   justifyContent: "center",
-                  // backgroundColor: "var(--yellow-light)",
                 }}
                 onClick={() => {
                   navigate(`/createPost`);

@@ -43,6 +43,10 @@ function App() {
   const cartArr = useSelector((state) => state);
 
   useEffect(() => {
+    checkUserInfo();
+  }, []);
+
+  function checkUserInfo() {
     if (localStorage.getItem("accessToken")) {
       axios
         .get("https://anbda.herokuapp.com/auth/auth", {
@@ -60,18 +64,17 @@ function App() {
           }
         });
     }
-  }, []);
+  }
 
-  const logout = () => {
+  function logout() {
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false });
-    // navigate("/profile/1");
-  };
+  }
 
-  const handleLanguagebtn = (e) => {
+  function handleLanguagebtn(e) {
     i18n.changeLanguage(e.target.value);
     setLanguage(e.target.value);
-  };
+  }
   return (
     <Router>
       <Suspense fallback="loading..">

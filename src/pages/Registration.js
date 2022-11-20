@@ -22,7 +22,7 @@ function Registration() {
     password: Yup.string().min(4).max(20).required(),
   });
 
-  const onSubmit = (data) => {
+  function onSubmit(data) {
     console.log(data);
     if (data.password == data.confirmPassword) {
       axios.get("https://anbda.herokuapp.com/auth/login").then((res) => {
@@ -32,7 +32,6 @@ function Registration() {
         if (!usernameExist) {
           axios.post("https://anbda.herokuapp.com/auth", data).then(() => {
             navigate(`/`);
-
             alert(`Successfully registered!!`);
           });
         } else {
@@ -42,11 +41,7 @@ function Registration() {
     } else {
       alert(`password doesn't match`);
     }
-  };
-
-  const toLogin = () => {
-    navigate(`/login`);
-  };
+  }
 
   return (
     <div className="register">
@@ -58,7 +53,6 @@ function Registration() {
         <Form className="R-formContainer">
           <div className="R-signUp-form">
             <h1>Sign Up </h1>
-            {/* <label>E-mail </label> */}
             <ErrorMessage name="username" component="span" />
             <Field
               autocomplete="off"
@@ -68,7 +62,6 @@ function Registration() {
               placeholder="E-mail"
             />
 
-            {/* <label>Password </label> */}
             <ErrorMessage name="password" component="span" />
             <Field
               autoComplete="off"
@@ -78,7 +71,6 @@ function Registration() {
               placeholder="Password"
             />
 
-            {/* <label>Confirm Password </label> */}
             <ErrorMessage name="password" component="span" />
             <Field
               autoComplete="off"
@@ -88,7 +80,6 @@ function Registration() {
               placeholder="Confirm Password "
             />
 
-            {/* <label>{t("id")}</label> */}
             <Field
               autoComplete="off"
               type="text"
@@ -97,7 +88,6 @@ function Registration() {
               placeholder={t("id")}
             />
             <div className="R-location">
-              {/* <label>{t("Mlocation")}</label> */}
               <Field
                 autoComplete="off"
                 type="text"
@@ -113,15 +103,8 @@ function Registration() {
               Sign Up
             </button>
           </div>
-          {/* <button onClick={navigate(`/login`)}>Log in</button> */}
         </Form>
       </Formik>
-      {/* <div>
-        <span>Already have an account?</span>{" "}
-      </div>
-
-      <div>wowowow</div>
-      <button onClick={toLogin}>Log in</button> */}
     </div>
   );
 }

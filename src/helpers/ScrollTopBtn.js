@@ -1,6 +1,7 @@
 import React from "react";
 
 function ScrollTopBtn({ target }) {
+
   const scrolltoTop = (target) => {
     console.log(target);
     target.scrollTo({
@@ -9,6 +10,7 @@ function ScrollTopBtn({ target }) {
       behavior: "smooth",
     });
   };
+  
   return (
     <button
       className="scrollTopBtn"
