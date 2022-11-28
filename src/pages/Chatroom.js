@@ -5,6 +5,8 @@ import { AuthContext } from "../helpers/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "../css/Chatroom.css";
 import Message from "./Message";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Chatroom() {
   let { id } = useParams();
@@ -52,7 +54,7 @@ function Chatroom() {
   function handleSubmit() {
     console.log("문자보내기");
     let date = new Date();
-    date = date.setHours(date.getHours() + 9); //그리니치와 한국시간차
+    date = date.setHours(date.getHours() + 1); //그리니치와 한국시간차
     axios
       .post(
         "https://anbda.herokuapp.com/message",
@@ -101,7 +103,7 @@ function Chatroom() {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {
-        alert("message deleted!");
+        toast("message deleted!");
         setReload(!reload);
       });
   }

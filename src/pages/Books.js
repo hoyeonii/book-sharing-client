@@ -131,7 +131,7 @@ function Home() {
             setGenresOpen(!genresOpen);
           }}
         ></i>
-        <label>{listOfPosts.length + " results"}</label>
+        <label>{filteredData.length + " results"}</label>
         <div
           className="B-category-small"
           style={{ display: `${genresOpen ? "block" : "none"}` }}

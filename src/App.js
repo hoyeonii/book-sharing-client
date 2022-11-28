@@ -11,6 +11,8 @@ import Profile from "./pages/Profile.js";
 import Message from "./pages/Message.js";
 import Cart from "./pages/Cart.js";
 import Chatroom from "./pages/Chatroom.js";
+import "react-toastify/dist/ReactToastify.css";
+
 import { AuthContext } from "./helpers/AuthContext";
 import { LanguageContext } from "./helpers/LanguageContext";
 import { useState, useEffect, Suspense } from "react";

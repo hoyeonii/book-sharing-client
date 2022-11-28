@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-around;
   background-color: var(--main-lighter);
+  border-radius: 0px 0px 30px 30px;
 }
 .Chat {
   width: 80%;
@@ -11,6 +12,7 @@
 .Chat h3 {
   margin: 2% 0;
   padding: 0 7%;
+  line-height: 3rem;
   font-weight: 600;
   display: flex;
   justify-content: space-between;
@@ -22,6 +24,7 @@
   overflow-y: scroll;
   /* border: 2px solid var(--main-stress); */
   background-color: white;
+  border-radius: 10px;
 }
 .Chat-messages::-webkit-scrollbar {
   width: 7px; /*스크롤바의 너비*/

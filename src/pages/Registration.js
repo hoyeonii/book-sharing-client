@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../css/Registration.css";
 import { initReactI18next, useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
 
 function Registration() {
   let navigate = useNavigate();
@@ -32,14 +33,14 @@ function Registration() {
         if (!usernameExist) {
           axios.post("https://anbda.herokuapp.com/auth", data).then(() => {
             navigate(`/`);
-            alert(`Successfully registered!!`);
+            toast(`Successfully registered!!`);
           });
         } else {
-          alert("username already exists");
+          toast("username already exists");
         }
       });
     } else {
-      alert(`password doesn't match`);
+      toast(`password doesn't match`);
     }
   }
 

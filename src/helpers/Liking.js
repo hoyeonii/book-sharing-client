@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 function Liking({ postId, alreadyLiked }) {
   const [liked, setLiked] = useState(alreadyLiked);
@@ -15,7 +16,7 @@ function Liking({ postId, alreadyLiked }) {
       let likedExist = res.data.find(
         (like) => like.PostId === postId && like.UserId === authState.id
       );
-      if (isMounted) setLiked(likedExist);
+      setLiked(likedExist);
     });
   }
 
@@ -45,14 +46,14 @@ function Liking({ postId, alreadyLiked }) {
             //   })
             // );
           })
-      : alert("로그인 해주세요");
+      : toast("로그인 해주세요");
   }
   return (
     <button
       className="likingButton"
       onClick={(e) => {
         e.stopPropagation();
-        authState.id ? likeAPost(postId) : alert("로그인 해주세요");
+        authState.id ? likeAPost(postId) : toast("로그인 해주세요");
       }}
     >
       <i

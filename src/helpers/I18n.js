@@ -11,14 +11,14 @@ export const translationsEng = {
   signup: "Sign up",
 
   //home
-  header1: "Let's read!",
+  header1: "Sick of eBooks?",
   header2: "Exchange your ",
   header3: "Korean books",
   header4: "with other people",
   // header4: "feel international shipping costs too much",
   about1: "BillyDa is a space where you can exchange Korean books in Germany.",
   about2:
-    "Paying 20euro and more just to read one book doesn't make sense, does it?",
+    "Paying 20euro and more just to read one book doesn't make any sense, does it?",
   about3:
     "We are here for you! Look for the book you would like to read, and simply send a message.",
   whyPickup: "Picking up",
@@ -74,7 +74,7 @@ export const translationsEng = {
 
   //cart
   cart: "Cart",
-  cartTip: "You can send an exchange request at once.",
+  cartTip: "You can send an exchange request all at once.",
 };
 export const translationsKor = {
   //Nav

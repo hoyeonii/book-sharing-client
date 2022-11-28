@@ -83,7 +83,10 @@
   /* margin: auto; */
 
   /* padding-right: 5%; */
-  /* width: 75%; */
+  width: 75%;
+}
+.createPostPage .CP-result-info {
+  width: 40%;
 }
 .CP-result-info-title {
   font-size: 18px;
@@ -100,6 +103,8 @@
 .CP-result-deleteBtn {
   position: absolute;
   right: 3%;
+  width: 2rem;
+  height: 2rem;
 }
 .CP-submit {
   display: flex;

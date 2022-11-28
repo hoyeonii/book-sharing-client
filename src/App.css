@@ -2,7 +2,7 @@
   --main-stress: #6e4eff;
   /* --main-stress: #d14031; */
   /* --yellow-stress: rgb(255, 174, 0); */
-  /* --main-normal: #ffd8c6; */
+  --main-normal: #ffd8c6;
   /* --yellow-normal: rgb(255, 220, 125); */
   --main-light: #cee7ff;
 
@@ -102,8 +102,9 @@ header a,
 button {
   border: none;
   background-color: var(--main-stress);
-  border-radius: 5px;
-  padding: 5px 10px;
+  border-radius: 50px;
+  margin: 5px;
+  padding: 10px;
   color: white;
   font-weight: 600;
   cursor: pointer;

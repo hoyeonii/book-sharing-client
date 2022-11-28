@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../helpers/AuthContext";
 import "../css/Login.css";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -17,7 +18,7 @@ function Login() {
       .post("https://anbda.herokuapp.com/auth/login", defaultData)
       .then((res) => {
         if (res.data.error) {
-          alert(res.data.error);
+          toast(res.data.error);
         } else {
           localStorage.setItem("accessToken", res.data.token); //로그인하면 F12 Application SessionStorage에 key, value 값으로 저장
 

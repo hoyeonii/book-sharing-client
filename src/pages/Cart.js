@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteCart, deleteAll } from "../helpers/actions";
 import { AuthContext } from "../helpers/AuthContext";
 import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
+
 function Cart() {
   const { authState } = useContext(AuthContext);
   const cartArr = useSelector((state) => state);
@@ -35,7 +37,7 @@ function Cart() {
         })
         .catch((err) => console.log(err))
     );
-    alert("Message Successfully sent!");
+    toast("Message Successfully sent!");
   };
 
   return (
@@ -72,10 +74,10 @@ function Cart() {
             dispatch(deleteAll());
           }}
         >
-          모두 삭제
+          Clear
         </button>
       )}
-      <button onClick={sendMessage}>전체 메세지 보내기</button>
+      <button onClick={sendMessage}>Send Message to All</button>
     </div>
   );
 }

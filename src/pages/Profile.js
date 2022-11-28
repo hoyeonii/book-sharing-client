@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { addCart } from "../helpers/actions";
 import uploadBook from "../Images/uploadBook.png";
 import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
 
 function Profile() {
   let { id } = useParams(); // 프로필이 보여질 유저의 id
@@ -54,7 +55,7 @@ function Profile() {
       .then((res) => {
         setUserPosts(res.data);
       });
-      
+
     axios
       .get(`https://anbda.herokuapp.com/likes/likedPosts/${id}`)
       .then((res) => {
@@ -67,7 +68,7 @@ function Profile() {
       .get(`https://anbda.herokuapp.com/follow/byfollowedId/${id}`)
       .then((res) => {
         setfollowers(res.data);
-      })
+      });
 
     axios
       .get(`https://anbda.herokuapp.com/follow/byfollowerId/${id}`)
@@ -91,8 +92,10 @@ function Profile() {
       )
       .then((response) => {
         if (localStorage.getItem("accessToken") == null) {
-          alert(`Log in to leave comment`);
+          toast(`Log in to leave comment`);
           navigate("/login");
+        } else {
+          navigate("");
         }
       });
   }
@@ -115,7 +118,7 @@ function Profile() {
       .catch((err) => {
         console.log(err);
       });
-    alert(`프로필 변경이 완료되었습니다.`);
+    toast(`프로필 변경이 완료되었습니다.`);
   }
 
   function handleAvailable(postId, postAvailable) {
@@ -138,7 +141,7 @@ function Profile() {
       .catch((err) => {
         console.log(err);
       });
-    alert(`책 대여가능 상태가 바뀌었습니다`);
+    toast(`책 대여가능 상태가 바뀌었습니다`);
   }
 
   // const handleUsernameSave = () => {
@@ -228,7 +231,7 @@ function Profile() {
               onClick={() => {
                 authState.id
                   ? navigate(`/message/${id}`)
-                  : alert("로그인 해주세요");
+                  : toast("로그인 해주세요");
               }}
             >
               <i

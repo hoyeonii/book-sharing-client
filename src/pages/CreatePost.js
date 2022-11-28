@@ -6,6 +6,7 @@ import "../css/CreatePost.css";
 import { AuthContext } from "../helpers/AuthContext";
 import Loading from "../helpers/Loading";
 import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
 
 function CreatePost() {
   const [search, setSearch] = useState("");
@@ -266,7 +267,7 @@ function CreatePost() {
               <button
                 type="submit"
                 onClick={() => {
-                  authState.id ? onSubmit() : alert("로그인 해주세요");
+                  authState.id ? onSubmit() : toast("로그인 해주세요");
                 }}
               >
                 {t("upload")}
