@@ -25,7 +25,7 @@ function Registration() {
 
   function onSubmit(data) {
     console.log(data);
-    if (data.password == data.confirmPassword) {
+    if (data.password === data.confirmPassword) {
       axios.get("https://anbda.herokuapp.com/auth/login").then((res) => {
         let usernameExist = res.data.find(
           (user) => user.username === data.username

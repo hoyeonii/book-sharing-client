@@ -23,7 +23,7 @@ function Message({ reload, setReload }) {
       .get(`https://anbda.herokuapp.com/message/${authState.id}`)
       .then((res) => {
         let raw = res.data.map((el) =>
-          el.send == authState.id ? el.receive : el.send
+          el.send === authState.id ? el.receive : el.send
         );
         setChatroom([...new Set(raw)]);
         setChats(res.data.sort((a, b) => b.id - a.id));
@@ -49,14 +49,15 @@ function Message({ reload, setReload }) {
               className="M-room"
             >
               <strong>
-                {userList.find((user) => user.id == el) &&
-                  userList.find((user) => user.id == el).name}
+                {userList.find((user) => user.id === el) &&
+                  userList.find((user) => user.id === el).name}
               </strong>
               {chats[0] && (
                 <div className="M-rooms-lastchat">
                   {
-                    chats.find((chat) => chat.send == el || chat.receive == el)
-                      .text
+                    chats.find(
+                      (chat) => chat.send === el || chat.receive === el
+                    ).text
                   }
                 </div>
               )}
@@ -64,13 +65,13 @@ function Message({ reload, setReload }) {
                 <div className="M-rooms-lastdate">
                   {today !==
                   chats
-                    .find((chat) => chat.send == el || chat.receive == el)
+                    .find((chat) => chat.send === el || chat.receive === el)
                     .createdAt.split("T")[0]
                     ? chats
-                        .find((chat) => chat.send == el || chat.receive == el)
+                        .find((chat) => chat.send === el || chat.receive === el)
                         .createdAt.split("T")[0]
                     : chats
-                        .find((chat) => chat.send == el || chat.receive == el)
+                        .find((chat) => chat.send === el || chat.receive === el)
                         .createdAt.split("T")[1]
                         .slice(0, 5)}
                 </div>

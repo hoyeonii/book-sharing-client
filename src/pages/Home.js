@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../css/Home.css";
 import how1 from "../Images/how1.png";
 import how2 from "../Images/how2.png";
@@ -8,9 +8,14 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import logo from "../Images/anbda_logo.png";
 import mainPic from "../Images/mainPic.jfif";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../helpers/AuthContext";
 
 function Home() {
   const { t } = useTranslation();
+  let navigate = useNavigate();
+  const { authState } = useContext(AuthContext);
+  console.log(authState);
 
   const [titleRef1, titleInView1] = useInView({
     triggerOnce: false,
@@ -47,7 +52,13 @@ function Home() {
           <h1 className="H-text1">{t(`header2`)}</h1>
           <h1 className="H-text2">{t(`header3`)}</h1>
           <h1 className="H-text3">{t(`header4`)}</h1>
-          <button>{t("signup")}</button>
+          <button
+            onClick={() =>
+              navigate(authState.status ? "/createpost" : "/registration")
+            }
+          >
+            {authState.status ? t("upload") : t("signup")}
+          </button>
         </div>
       </section>
       <section className="H-about">

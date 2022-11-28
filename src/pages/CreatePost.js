@@ -106,9 +106,13 @@ function CreatePost() {
               ></i>
             </button>
           </form>
+          {loading === true && (
+            <div className="loading">
+              <Loading />
+            </div>
+          )}
+          {/* {result[0].title === "nothing" ? <div>아직 검색 안했을때</div>:<div></div> } */}
           <div className="CP-results">
-            {loading === true && <Loading />}
-            {/* {result[0].title === "nothing" ? <div>아직 검색 안했을때</div>:<div></div> } */}
             {loading === false && result.length === 0 ? (
               <div className="CP-noresult">
                 {t("noresult")}
@@ -170,11 +174,7 @@ function CreatePost() {
                         }
                       </div>
                       <br />
-                      {t("by")} :{" "}
-                      {
-                        removeTags(item.author)
-                        // .replaceAll("<b>", "").replaceAll("</b>", "")
-                      }
+                      {item.author && `${t("by")} : ${removeTags(item.author)}`}
                       <br />
                       {t("publisher")} :{" "}
                       {

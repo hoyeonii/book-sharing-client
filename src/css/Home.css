@@ -87,8 +87,9 @@
   top: 300px;
 }
 .H-text button {
-  padding: 5%;
+  padding: 9%;
   animation: movingUp 3s;
+  font-size: 1.2rem;
 }
 
 @keyframes movingDown {

@@ -5,12 +5,12 @@
 
   margin: 4% auto;
   height: 70vh;
-  /* border: 1px solid red; */
   width: 40%;
   padding: 20px;
   /* background-image: url("https://img.wallpapersafari.com/tablet/768/1024/76/91/koxerM.jpg"); */
   background-color: var(--main-light);
   animation: movingUp 2s;
+  border-radius: 1rem;
 }
 .R-signUp-form input {
   padding: 12px;

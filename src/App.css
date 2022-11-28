@@ -42,6 +42,10 @@
   display: none;
 }
 
+.loading {
+  height: 70vh;
+}
+
 header {
   height: 10vh;
   width: 100vw;

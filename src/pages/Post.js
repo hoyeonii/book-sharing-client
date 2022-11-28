@@ -9,6 +9,7 @@ import Available from "../helpers/Available";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../helpers/Loading";
 
 function Post() {
   let { id } = useParams();
@@ -18,6 +19,7 @@ function Post() {
   // const [newComment, setNewComment] = useState("");
   const [userPosts, setUserPosts] = useState([]);
   const [userName, setUserName] = useState("");
+  const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 
   const { authState } = useContext(AuthContext);
@@ -30,6 +32,7 @@ function Post() {
       .get(`https://anbda.herokuapp.com/posts/byId/${bookId}`)
       .then((response) => {
         if (isMounted) setBookInfo(response.data);
+        setLoading(false);
       });
 
     return () => {
@@ -43,10 +46,10 @@ function Post() {
       .then((res) => {
         setUserPosts(res.data);
       });
+
     axios
       .get(`https://anbda.herokuapp.com/auth/basicinfo/${bookInfo.UserId}`)
       .then((res) => {
-        console.log(res.data);
         setUserName(res.data.name);
       });
   }, [bookInfo]);
@@ -115,68 +118,75 @@ function Post() {
   return (
     <div className="postPage">
       {/* <div className="PP-info-buttons">{bookInfo.available}</div> */}
-      <section className="PP-info">
-        <img className="PP-info-img" src={bookInfo.image} alt="no image" />
-        <div className="PP-info-detail">
-          <div className="PP-info-detail-title">{bookInfo.title}</div>
-          <div className="PP-info-detail-author">{bookInfo.author}</div>
-          <div className="PP-info-detail-rest">
-            <ul className="PP-info-detail-rest-index">
-              <li>{t("publisher")}</li>
-              <li>ISBN</li>
-              <li>{t("genres")}</li>
-              {bookInfo.description && <li>{t("description")}</li>}
-            </ul>
-            <div className="PP-info-detail-rest-text">
-              {bookInfo.publisher}
-              <br />
-              {bookInfo.isbn}
-              <br />
-              {bookInfo.genres}
-              <br />
-              {bookInfo.description}
-              <br />
+      {loading && (
+        <section className="loading">
+          <Loading />
+        </section>
+      )}
+      {!loading && (
+        <section className="PP-info">
+          <img className="PP-info-img" src={bookInfo.image} alt="no image" />
+          <div className="PP-info-detail">
+            <div className="PP-info-detail-title">{bookInfo.title}</div>
+            <div className="PP-info-detail-author">{bookInfo.author}</div>
+            <div className="PP-info-detail-rest">
+              <ul className="PP-info-detail-rest-index">
+                <li>{t("publisher")}</li>
+                <li>ISBN</li>
+                <li>{t("genres")}</li>
+                {bookInfo.description && <li>{t("description")}</li>}
+              </ul>
+              <div className="PP-info-detail-rest-text">
+                {bookInfo.publisher}
+                <br />
+                {bookInfo.isbn}
+                <br />
+                {bookInfo.genres}
+                <br />
+                {bookInfo.description}
+                <br />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="PP-info-btn">
-          <div className="PP-info-user">
-            <strong>{userName}</strong>
-            {authState.id === bookInfo.UserId ? (
-              <div>
-                <button
-                  onClick={() => {
-                    deletePost();
-                  }}
-                  style={{
-                    cursor: "pointer",
-                    width: "60px",
-                    alignSelf: "center",
-                  }}
-                >
-                  Delete
-                </button>
-                <ToastContainer />
-              </div>
-            ) : (
-              <div>
-                <button
-                  onClick={() => {
-                    navigate(`/profile/${bookInfo.UserId}`);
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  view profile
-                </button>
-              </div>
-            )}
+          <div className="PP-info-btn">
+            <div className="PP-info-user">
+              <strong>{userName}</strong>
+              {authState.id === bookInfo.UserId ? (
+                <div>
+                  <button
+                    onClick={() => {
+                      deletePost();
+                    }}
+                    style={{
+                      cursor: "pointer",
+                      width: "60px",
+                      alignSelf: "center",
+                    }}
+                  >
+                    Delete
+                  </button>
+                  <ToastContainer />
+                </div>
+              ) : (
+                <div>
+                  <button
+                    onClick={() => {
+                      navigate(`/profile/${bookInfo.UserId}`);
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    view profile
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="PP-info-right">
+              {bookInfo.id && <Liking postId={bookInfo.id} preliked={true} />}
+              <Available available={bookInfo.available} />
+            </div>
           </div>
-          <div className="PP-info-right">
-            {bookInfo.id && <Liking postId={bookInfo.id} preliked={true} />}
-            <Available available={bookInfo.available} />
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* <div className="addCommentContainer">
         <form
@@ -235,6 +245,7 @@ function Post() {
                   key={i}
                   onClick={() => {
                     navigate(`/post/${post.id}`);
+                    setLoading(true);
                     setBookId(post.id);
                   }}
                 >

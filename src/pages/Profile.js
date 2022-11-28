@@ -13,6 +13,7 @@ import { addCart } from "../helpers/actions";
 import uploadBook from "../Images/uploadBook.png";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
+import Loading from "../helpers/Loading";
 
 function Profile() {
   let { id } = useParams(); // 프로필이 보여질 유저의 id
@@ -27,6 +28,7 @@ function Profile() {
   const [username, setUsername] = useState("");
   const [location, setLocation] = useState("");
   const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { authState } = useContext(AuthContext);
   const { t } = useTranslation();
 
@@ -45,6 +47,7 @@ function Profile() {
         setUserData(res.data);
         setUsername(res.data.name);
         setLocation(res.data.location);
+        setLoading(false);
         console.log(res.data);
       });
   }
@@ -91,7 +94,7 @@ function Profile() {
         }
       )
       .then((response) => {
-        if (localStorage.getItem("accessToken") == null) {
+        if (localStorage.getItem("accessToken") === null) {
           toast(`Log in to leave comment`);
           navigate("/login");
         } else {
@@ -165,7 +168,11 @@ function Profile() {
   //   loadUserData();
   // };
 
-  return (
+  return loading ? (
+    <div className="loading">
+      <Loading />
+    </div>
+  ) : (
     <div>
       <ScrollTopBtn target={window} />
       <div className="P-info">
@@ -285,7 +292,7 @@ function Profile() {
       {showMyBook && userPosts ? (
         <div>
           <div className="P-books">
-            {authState.id == id && (
+            {authState.id === id && (
               <div
                 className="P-book"
                 style={{
@@ -331,7 +338,7 @@ function Profile() {
                 </div>
                 <div>
                   <Available available={post.available} />
-                  {authState.id == id && (
+                  {authState.id === id && (
                     <ToggleButton
                       value={post.available}
                       onToggle={(e) => {

@@ -1,13 +1,13 @@
 .CP-search {
   /* background-color: white; */
-  width: 30%;
+  width: 40%;
   margin: auto;
   padding-top: 20px;
   border-bottom: 2px solid var(--main-stress);
 }
 
 .CP-searchBar {
-  width: 85%;
+  width: 70%;
   border: none;
   background-color: transparent;
   /* search bar 클릭했을때 text input 박스 안나오게 */
@@ -28,11 +28,18 @@
   margin: 2% 5%;
   position: relative;
 }
+.CP-loadingWrapper {
+  position: relative;
+  /* border: 3px solid rebeccapurple; */
+  height: 80%;
+}
 .CP-loading {
   position: absolute;
-  left: 48%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   animation: spin 1s linear infinite;
-  font-size: 30px;
+  font-size: 4rem;
   color: var(--main-stress);
 }
 @keyframes spin {
@@ -88,6 +95,11 @@
 .createPostPage .CP-result-info {
   width: 40%;
 }
+
+.CP-results .CP-result-info {
+  width: 70%;
+}
+
 .CP-result-info-title {
   font-size: 18px;
   font-weight: 600;
