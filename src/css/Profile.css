@@ -67,7 +67,7 @@
 }
 .P-buttons > * {
   width: 50%;
-  font-size: 17px;
+  font-size: var(--font-l);
   padding: 1%;
   background-color: transparent;
   border: none;
@@ -118,7 +118,7 @@
     /* height: 70px; */
   }
   .P-info-username h3 {
-    font-size: 17px;
+    font-size: var(--font-l);
   }
   .P-books {
     /* display: grid; */

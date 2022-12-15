@@ -12,7 +12,7 @@
   background-color: transparent;
   /* search bar 클릭했을때 text input 박스 안나오게 */
   outline: none;
-  font-size: 15px;
+  font-size: var(--font-m);
   font-weight: 600;
 }
 .CP-searchBarbtn {
@@ -20,7 +20,7 @@
   background-color: transparent;
   padding: 0;
   width: 10%;
-  font-size: 17px;
+  font-size: var(--font-l);
 }
 .CP-results {
   display: grid;
@@ -101,7 +101,7 @@
 }
 
 .CP-result-info-title {
-  font-size: 18px;
+  font-size: var(--font-xl);
   font-weight: 600;
   padding-top: 5px;
   width: 100%;
@@ -142,13 +142,13 @@
   .CP-result-info {
     text-align: left;
     padding: 3%;
-    font-size: 13px;
+    font-size: var(--font-s);
     align-self: flex-start;
     margin: 0 5px;
     /* width: 75%; */
   }
   .CP-result-info-title {
-    font-size: 15px;
+    font-size: var(--font-m);
     font-weight: 600;
     padding-top: 3px;
     width: 100%;

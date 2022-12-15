@@ -45,13 +45,13 @@
   margin: auto;
   border-radius: 50px;
   align-items: center;
-  font-size: 13px;
+  font-size: var(--font-l);
 }
 .Chat-message-me,
 .Chat-message-otherside {
   position: relative;
   width: 50%;
-  font-size: 15px;
+  font-size: var(--font-m);
   text-align: left;
   padding: 1.5% 2% 1%;
   margin: 3%;
@@ -103,16 +103,16 @@
   }
   .Chat-message-byDate {
     width: 20%;
-    /* font-size: 12px; */
+    /* font-size: var(--font-s); */
   }
 }
 @media screen and (max-width: 480px) {
   .Chat h3 {
-    font-size: 17px;
+    font-size: var(--font-l);
   }
   .Chat-message-me,
   .Chat-message-otherside {
-    font-size: 15px;
+    font-size: var(--font-m);
     width: 70%;
     padding: 2% 3%;
   }

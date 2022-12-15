@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   width: 90%;
-  height: 50vh;
+  /* height: 50vh; */
   padding: 3% 0;
   margin: auto;
   /* justify-content: space-between; */
@@ -13,13 +13,14 @@
 .PP-info-img {
   width: 80%;
   box-shadow: 2px 3px 10px;
+  margin-bottom: auto;
   /* margin: 20%; */
   /* height: auto; */
 }
 .PP-info-detail {
   padding: 0 5%;
   text-align: left;
-  font-size: 14px;
+  font-size: var(--font-m);
   border-right: 1px solid gray;
 }
 .PP-info-btn {
@@ -41,7 +42,7 @@
 .PP-info-detail-author {
   font-weight: 600;
 
-  font-size: 17px;
+  font-size: var(--font-l);
   color: gray;
 }
 .PP-info-detail-rest {
@@ -70,16 +71,13 @@
 } */
 
 .PP-more {
-  /* display: flex;
-  flex-wrap: wrap;
-  overflow-x: scroll; */
   width: 95%;
   position: relative;
   margin: 2.5%;
 }
 .PP-more-header {
   text-align: left;
-  font-size: 18px;
+  font-size: var(--font-xl);
   font-weight: 600;
 }
 
@@ -98,7 +96,7 @@
 .PP-more-books {
   /* border: 1px solid olive; */
   width: 200px;
-  margin: 2% 0;
+  margin: 2% 1%;
   cursor: pointer;
 }
 .PP-more-books-imgContainer {
@@ -155,7 +153,7 @@
   .PP-info-detail {
     padding: 0 5%;
     text-align: left;
-    font-size: 13px;
+    font-size: var(--font-s);
     border-right: none;
   }
   .PP-info-btn {
@@ -167,10 +165,10 @@
     /* text-align: center; */
   }
   .PP-info-detail-title {
-    font-size: 17px;
+    font-size: var(--font-l);
   }
   .PP-info-detail-author {
-    font-size: 15px;
+    font-size: var(--font-m);
   }
   .PP-info-user {
     height: 100%;
@@ -194,7 +192,7 @@
     margin-top: 25%;
   }
   .PP-more-header {
-    font-size: 17px;
+    font-size: var(--font-l);
   }
   .PP-more-carousel {
     display: grid;
@@ -208,7 +206,7 @@
 
   .PP-more-books-title {
     width: 150px;
-    font-size: 14px;
+    font-size: var(--font-m);
   }
   .PP-more > button {
     display: none;

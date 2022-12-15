@@ -89,7 +89,7 @@
 .H-text button {
   padding: 9%;
   animation: movingUp 3s;
-  font-size: 1.2rem;
+  font-size: var(--font-xl);
 }
 
 @keyframes movingDown {
@@ -157,7 +157,7 @@
 }
 
 .H-about a {
-  font-size: 15px;
+  font-size: var(--font-m);
   text-decoration: none;
   color: var(--main-stress);
   /* text-shadow: 1px 1px 1px black; */
@@ -189,7 +189,7 @@
 }
 
 .H-about-text {
-  font-size: 18px;
+  font-size: var(--font-xl);
   margin: 0;
   padding-top: 3%;
   width: 100%;
@@ -346,11 +346,11 @@
     width: 90%;
   }
   .H-about-text {
-    font-size: 15px;
+    font-size: var(--font-m);
   }
 
   .H-about a {
-    font-size: 13px;
+    font-size: var(--font-s);
   }
   .H-about-text1 span {
     font-size: 5em;
@@ -369,7 +369,7 @@
   .H-text > h1 {
     /* position: absolute; */
     margin: 0;
-    font-size: 15px;
+    font-size: var(--font-m);
     color: black;
     /* text-shadow: 2px 3px navy; */
     overflow: hidden;
@@ -378,12 +378,12 @@
     width: 90%;
   }
   .H-about-text {
-    font-size: 15px;
+    font-size: var(--font-m);
     padding: 5% 0;
   }
 
   .H-about a {
-    font-size: 13px;
+    font-size: var(--font-s);
   }
   .H-about-text1 span {
     font-size: 3em;
@@ -399,7 +399,7 @@
     top: 60vh;
   }
   .H-footer {
-    font-size: 12px;
+    font-size: var(--font-s);
   }
 
   .H-footer-logo {

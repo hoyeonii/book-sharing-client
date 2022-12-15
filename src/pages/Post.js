@@ -110,7 +110,7 @@ function Post() {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {
-        toast("Deleted!");
+        toast("Deleted");
         navigate("/books");
       });
   }

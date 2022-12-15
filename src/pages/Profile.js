@@ -123,7 +123,7 @@ function Profile() {
       .catch((err) => {
         console.log(err);
       });
-    toast(`프로필 변경이 완료되었습니다.`);
+    toast(`Pofile Updated`);
   }
 
   function handleAvailable(postId, postAvailable) {
@@ -146,7 +146,7 @@ function Profile() {
       .catch((err) => {
         console.log(err);
       });
-    toast(`책 대여가능 상태가 바뀌었습니다`);
+    toast(`Availability status updated`);
   }
 
   // const handleUsernameSave = () => {
@@ -240,7 +240,7 @@ function Profile() {
               onClick={() => {
                 authState.id
                   ? navigate(`/message/${id}`)
-                  : toast("로그인 해주세요");
+                  : toast("Sign In needed");
               }}
             >
               <i
