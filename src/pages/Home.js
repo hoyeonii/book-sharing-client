@@ -35,7 +35,7 @@ function Home() {
       <section className="H-header">
         <div className="H-header-img1">
           <img className="H-header-img1-img" src={mainPic} alt="덕혜옹주"></img>
-          <div class="H-header-img1-shadow"></div>
+          <div className="H-header-img1-shadow"></div>
         </div>
         <img
           className="H-header-img2"

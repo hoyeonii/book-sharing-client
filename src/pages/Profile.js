@@ -17,6 +17,7 @@ import Loading from "../helpers/Loading";
 
 function Profile() {
   let { id } = useParams(); // 프로필이 보여질 유저의 id
+
   const dispatch = useDispatch();
   const [userData, setUserData] = useState("");
   const [userPosts, setUserPosts] = useState([]);
@@ -30,6 +31,7 @@ function Profile() {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const { authState } = useContext(AuthContext);
+
   const { t } = useTranslation();
 
   let navigate = useNavigate();
@@ -338,7 +340,7 @@ function Profile() {
                 </div>
                 <div>
                   <Available available={post.available} />
-                  {authState.id === id && (
+                  {authState.id === Number(id) && (
                     <ToggleButton
                       value={post.available}
                       onToggle={(e) => {

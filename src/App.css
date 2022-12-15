@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 :root {
   --main-stress: #6e4eff;
   /* --main-stress: #d14031; */

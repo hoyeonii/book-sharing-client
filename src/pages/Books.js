@@ -49,7 +49,7 @@ function Home() {
       copiedList = copiedList.filter((el) => el.genres === filter);
     }
     if (onlyAvail === true) {
-      copiedList = copiedList.filter((el) => el.available === 1);
+      copiedList = copiedList.filter((el) => Number(el.available) === 1);
     }
     setFilteredData(copiedList);
     setListOfPosts(copiedList.slice(0, 5));
