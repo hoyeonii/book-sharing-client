@@ -6,49 +6,23 @@
 
 .H-header {
   position: relative;
-  height: 70vh;
-  background-color: var(--main-lighter);
+  height: 90vh;
+  /* background-color: var(--main-lighter); */
+  background-image: url("https://image.slidesdocs.com/responsive-images/background/purple-edgy-creal-modern-portfolio-simple-powerpoint-background_f2fc0bf190__960_540.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 .H-header-img1 {
-  width: 17%;
+  width: 40%;
   position: absolute;
-  top: 27%;
-  right: 15%;
-  /* transform: translateY(-50%); */
+  top: 20%;
+  right: 10%;
   z-index: 1;
-  /* border: 1px solid olive; */
   animation: movingUp 3s;
 }
-.H-header-img1-img {
-  width: 100%;
-  /* box-shadow: 0 100px 10px 0px black; */
-}
-.H-header-img1-shadow {
-  position: absolute;
-  width: 110%;
-  height: 4px;
-  bottom: 10px;
-  /* border: 3px solid black; */
-  box-shadow: 0 10px 13px black;
-}
-.H-header-img2 {
-  position: absolute;
-  width: 20%;
-  /* height: 50vh; */
-  top: 15%;
-  right: 7%;
-  z-index: 0;
-  /* transform: translateY(-50%); */
-  animation: movingDown 2s ease-in-out;
-}
-.H-header-img3 {
-  position: absolute;
-  width: 15%;
-  bottom: 5%;
-  right: 30%;
-  /* transform: rotate(-40deg); */
-  animation: movingRight30 2s ease-in-out;
-}
+
 .H-text {
   position: absolute;
   top: 48%;

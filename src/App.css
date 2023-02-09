@@ -24,11 +24,6 @@ body {
 }
 
 @font-face {
-  font-family: "Nanum";
-  src: url("./fonts/NanumGothic.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "Ubuntu";
   src: url("./fonts/Ubuntu-Regular.ttf") format("truetype");
 }
@@ -36,7 +31,7 @@ body {
 .App {
   text-align: center;
   font-family: Ubuntu;
-  padding: 0 3%;
+  /* padding: 0 3%; */
   /* background-color: var(--yellow-light); */
   min-height: 100vh;
 }
@@ -52,7 +47,7 @@ body {
 header {
   height: 10vh;
   width: 100vw;
-  padding-bottom: 10px;
+  padding: 0 3% 10px;
   display: table-cell;
   border-bottom: 1px solid rebeccapurple;
   vertical-align: bottom;

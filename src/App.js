@@ -46,27 +46,27 @@ function App() {
 
   useEffect(() => {
     checkUserInfo();
-  }, []);
 
-  function checkUserInfo() {
-    if (localStorage.getItem("accessToken")) {
-      axios
-        .get("https://anbda.herokuapp.com/auth/auth", {
-          headers: { accessToken: localStorage.getItem("accessToken") },
-        })
-        .then((res) => {
-          if (res.data.error) {
-            setAuthState({ ...authState, status: false }); // authState중에서 status 상태만 바꿈
-          } else {
-            setAuthState({
-              username: res.data.username,
-              id: res.data.id,
-              status: true,
-            });
-          }
-        });
+    function checkUserInfo() {
+      if (localStorage.getItem("accessToken")) {
+        axios
+          .get("https://anbda.herokuapp.com/auth/auth", {
+            headers: { accessToken: localStorage.getItem("accessToken") },
+          })
+          .then((res) => {
+            if (res.data.error) {
+              setAuthState({ ...authState, status: false });
+            } else {
+              setAuthState({
+                username: res.data.username,
+                id: res.data.id,
+                status: true,
+              });
+            }
+          });
+      }
     }
-  }
+  }, []);
 
   function logout() {
     localStorage.removeItem("accessToken");
@@ -77,6 +77,7 @@ function App() {
     i18n.changeLanguage(e.target.value);
     setLanguage(e.target.value);
   }
+
   return (
     <Router>
       <Suspense fallback="loading..">
@@ -140,7 +141,6 @@ function App() {
           </div>
           <AuthContext.Provider value={{ authState, setAuthState }}>
             <LanguageContext.Provider value={{ language }}>
-              {/* AuthContext : 앱 전체에서 로그인이 되어있는지 없는지를 항상 확인 가능 */}
               <header>
                 <div className="header">
                   <div className="header-l">

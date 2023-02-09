@@ -52,9 +52,8 @@ function Chatroom() {
   }
 
   function handleSubmit() {
-    console.log("문자보내기");
     let date = new Date();
-    date = date.setHours(date.getHours() + 1); //그리니치와 한국시간차
+    date = date.setHours(date.getHours() + 1);
     axios
       .post(
         "https://anbda.herokuapp.com/message",
@@ -107,27 +106,6 @@ function Chatroom() {
         setReload(!reload);
       });
   }
-
-  // const handleUpdateRead = (messageId) => {
-  //   axios
-  //     .put(
-  //       `https://anbda.herokuapp.com/message/byId/${messageId}`,
-  //       {
-  //         read: 1,
-  //       },
-  //       {
-  //         headers: {
-  //           accessToken: localStorage.getItem("accessToken"),
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       // console.log(response.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   return (
     <div className="Chatroom">
